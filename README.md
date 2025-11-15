@@ -800,13 +800,9 @@ Para configurar autenticación en MongoDB:
 
 ---
 
-## 👥 Autores
+## 👤 Autor
 
-- ALBEIRO MANUEL BAENA TOVAR
-- SERGIO ALEJANDRO ENRIQUE CABALLERO LEON
-- CRISTIAN JOHAN GALVIS BERNAL
-- JULIAN DARIO GONZALEZ TOLEDO
-- WILLIAM ANDRES RINCON RODRIGUEZ
+**CRISTIAN JOHAN GALVIS BERNAL**
 
 **Curso**: BigData - Universidad Nacional Abierta y a Distancia (UNAD)  
 **Año**: 2025
