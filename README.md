@@ -92,6 +92,20 @@ La base de datos está compuesta por tres colecciones principales:
 └──────────────┘    └──────────────┘    └──────────────┘
 ```
 
+### Diagramas del Esquema
+
+#### Figura 1: Esquema de la Base de Datos (MongoDB Compass)
+
+![Esquema de la Base de Datos](red_social.png)
+
+*Figura 1. Esquema de la base de datos MongoDB para almacenamiento de datos de redes sociales (generado con MongoDB Compass)*
+
+#### Figura 2: Diagrama del Esquema de Base de Datos
+
+![Diagrama del Esquema](esquema_base_datos_red_social.png)
+
+*Figura 2. Diagrama del esquema de base de datos para la red social*
+
 ### Colecciones
 
 #### 1. **usuarios**
@@ -200,15 +214,376 @@ El script mostrará en consola todos los resultados de las consultas organizadas
 
 ---
 
+## 💻 Código Fuente
+
+### Script: `comandos_mongodb.py`
+
+Este script crea la base de datos, las colecciones e inserta los datos de prueba:
+
+```python
+# Script Python para crear base de datos MongoDB - Red Social
+# Requiere: pip install pymongo
+
+from pymongo import MongoClient
+from datetime import datetime
+from bson import ObjectId
+
+# Conectar a MongoDB
+client = MongoClient('mongodb://localhost:27017/')
+
+# Crear/seleccionar base de datos
+db = client['red_social']
+
+# ============================================
+# 1. COLECCIÓN: usuarios
+# ============================================
+
+usuarios = db['usuarios']
+
+# Insertar 2 usuarios de prueba
+usuarios_data = [
+    {
+        "username": "juan_perez",
+        "email": "juan.perez@email.com",
+        "nombre_completo": "Juan Pérez",
+        "fecha_registro": datetime(2024, 1, 10, 10, 30, 0),
+        "seguidores": 1250,
+        "siguiendo": 450,
+        "ubicacion": {
+            "ciudad": "Bogotá",
+            "pais": "Colombia"
+        }
+    },
+    {
+        "username": "maria_garcia",
+        "email": "maria.garcia@email.com",
+        "nombre_completo": "María García",
+        "fecha_registro": datetime(2024, 2, 15, 14, 20, 0),
+        "seguidores": 890,
+        "siguiendo": 320,
+        "ubicacion": {
+            "ciudad": "Medellín",
+            "pais": "Colombia"
+        }
+    }
+]
+
+resultado_usuarios = usuarios.insert_many(usuarios_data)
+print(f"Usuarios insertados: {len(resultado_usuarios.inserted_ids)}")
+
+# Obtener IDs de usuarios
+juan = usuarios.find_one({"username": "juan_perez"})
+maria = usuarios.find_one({"username": "maria_garcia"})
+
+# ============================================
+# 2. COLECCIÓN: posts
+# ============================================
+
+posts = db['posts']
+
+# Insertar 2 posts de prueba
+posts_data = [
+    {
+        "usuario_id": juan["_id"],
+        "username": "juan_perez",
+        "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #programacion #mongodb #bigdata",
+        "fecha_publicacion": datetime(2024, 12, 15, 14, 30, 0),
+        "fecha_actualizacion": datetime(2024, 12, 15, 14, 30, 0),
+        "visibilidad": "publico",
+        "estadisticas": {
+            "likes": 45,
+            "comentarios": 12,
+            "compartidos": 8,
+            "visualizaciones": 320
+        },
+        "hashtags": ["programacion", "mongodb", "bigdata"],
+        "reacciones": [
+            {
+                "usuario_id": maria["_id"],
+                "tipo": "like",
+                "fecha": datetime(2024, 12, 15, 14, 35, 0)
+            }
+        ],
+        "activo": True
+    },
+    {
+        "usuario_id": maria["_id"],
+        "username": "maria_garcia",
+        "contenido": "Compartiendo algunos tips de diseño UX para aplicaciones móviles 📱 #diseño #ux #mobile",
+        "fecha_publicacion": datetime(2024, 12, 16, 9, 15, 0),
+        "fecha_actualizacion": datetime(2024, 12, 16, 9, 15, 0),
+        "visibilidad": "publico",
+        "estadisticas": {
+            "likes": 78,
+            "comentarios": 15,
+            "compartidos": 12,
+            "visualizaciones": 450
+        },
+        "hashtags": ["diseño", "ux", "mobile"],
+        "reacciones": [
+            {
+                "usuario_id": juan["_id"],
+                "tipo": "like",
+                "fecha": datetime(2024, 12, 16, 9, 20, 0)
+            }
+        ],
+        "activo": True
+    }
+]
+
+resultado_posts = posts.insert_many(posts_data)
+print(f"Posts insertados: {len(resultado_posts.inserted_ids)}")
+
+# Obtener IDs de posts
+post1 = posts.find_one({"username": "juan_perez"})
+post2 = posts.find_one({"username": "maria_garcia"})
+
+# ============================================
+# 3. COLECCIÓN: comentarios
+# ============================================
+
+comentarios = db['comentarios']
+
+# Insertar 2 comentarios de prueba
+comentarios_data = [
+    {
+        "post_id": post1["_id"],
+        "usuario_id": maria["_id"],
+        "username": "maria_garcia",
+        "contenido": "Excelente trabajo! Me gustaría saber más sobre tu implementación.",
+        "fecha_comentario": datetime(2024, 12, 15, 16, 0, 0),
+        "fecha_actualizacion": datetime(2024, 12, 15, 16, 0, 0),
+        "estadisticas": {
+            "likes": 5,
+            "respuestas": 2
+        },
+        "comentario_padre_id": None,
+        "respuestas": [
+            {
+                "_id": ObjectId(),
+                "usuario_id": juan["_id"],
+                "username": "juan_perez",
+                "contenido": "Gracias! Te puedo compartir el código si quieres",
+                "fecha": datetime(2024, 12, 15, 16, 30, 0),
+                "likes": 1
+            }
+        ],
+        "activo": True
+    },
+    {
+        "post_id": post2["_id"],
+        "usuario_id": juan["_id"],
+        "username": "juan_perez",
+        "contenido": "Muy útiles estos tips! Los aplicaré en mi próximo proyecto.",
+        "fecha_comentario": datetime(2024, 12, 16, 10, 0, 0),
+        "fecha_actualizacion": datetime(2024, 12, 16, 10, 0, 0),
+        "estadisticas": {
+            "likes": 8,
+            "respuestas": 0
+        },
+        "comentario_padre_id": None,
+        "respuestas": [],
+        "activo": True
+    }
+]
+
+resultado_comentarios = comentarios.insert_many(comentarios_data)
+print(f"Comentarios insertados: {len(resultado_comentarios.inserted_ids)}")
+
+# ============================================
+# 4. CREAR ÍNDICES
+# ============================================
+
+# Índices para usuarios
+usuarios.create_index("username", unique=True)
+usuarios.create_index("email", unique=True)
+usuarios.create_index("fecha_registro")
+
+# Índices para posts
+posts.create_index("usuario_id")
+posts.create_index([("fecha_publicacion", -1)])  # -1 = descendente
+posts.create_index("hashtags")
+posts.create_index("visibilidad")
+posts.create_index([("estadisticas.likes", -1)])
+posts.create_index([("contenido", "text"), ("hashtags", "text")])
+
+# Índices para comentarios
+comentarios.create_index("post_id")
+comentarios.create_index("usuario_id")
+comentarios.create_index([("fecha_comentario", -1)])
+comentarios.create_index("comentario_padre_id")
+comentarios.create_index([("estadisticas.likes", -1)])
+
+print("Índices creados exitosamente")
+
+# ============================================
+# 5. VERIFICAR DATOS
+# ============================================
+
+print(f"\n=== RESUMEN DE DATOS INSERTADOS ===")
+print(f"Usuarios: {usuarios.count_documents({})}")
+print(f"Posts: {posts.count_documents({})}")
+print(f"Comentarios: {comentarios.count_documents({})}")
+print(f"Total: {usuarios.count_documents({}) + posts.count_documents({}) + comentarios.count_documents({})} documentos")
+
+# Cerrar conexión
+client.close()
+print("\nConexión cerrada")
+```
+
+### Script: `consultas_mongodb.py`
+
+Este script contiene todas las consultas implementadas. Para ver el código completo, consulta el archivo [consultas_mongodb.py](consultas_mongodb.py) en el repositorio.
+
+**Ejemplo de consultas básicas:**
+
+```python
+from pymongo import MongoClient
+from datetime import datetime
+
+# Conectar a MongoDB
+client = MongoClient('mongodb://localhost:27017/')
+db = client['red_social']
+
+usuarios = db['usuarios']
+posts = db['posts']
+comentarios = db['comentarios']
+
+# ============================================
+# CONSULTAS BASICAS (CRUD)
+# ============================================
+
+# INSERCIÓN
+nuevo_usuario = {
+    "username": "pedro_sanchez",
+    "email": "pedro.sanchez@email.com",
+    "nombre_completo": "Pedro Sánchez",
+    "fecha_registro": datetime.now(),
+    "seguidores": 500,
+    "siguiendo": 200,
+    "ubicacion": {"ciudad": "Cartagena", "pais": "Colombia"}
+}
+resultado = usuarios.insert_one(nuevo_usuario)
+
+# SELECCIÓN
+todos_usuarios = list(usuarios.find())
+usuario = usuarios.find_one({"username": "juan_perez"})
+
+# ACTUALIZACIÓN
+usuarios.update_one(
+    {"username": "juan_perez"},
+    {"$set": {"seguidores": 1300}}
+)
+
+# ELIMINACIÓN (soft delete)
+comentarios.update_one(
+    {"username": "juan_perez", "activo": True},
+    {"$set": {"activo": False}}
+)
+
+# ============================================
+# CONSULTAS CON FILTROS Y OPERADORES
+# ============================================
+
+# Operadores de comparación
+usuarios.find({"seguidores": {"$gt": 1000}})
+posts.find({"estadisticas.likes": {"$lt": 50}})
+
+# Operadores lógicos
+posts.find({
+    "$and": [
+        {"estadisticas.likes": {"$gt": 40}},
+        {"estadisticas.comentarios": {"$gt": 10}}
+    ]
+})
+
+# Operadores de array
+posts.find({"hashtags": "mongodb"})
+posts.find({"hashtags": {"$in": ["programacion", "diseño"]}})
+
+# ============================================
+# CONSULTAS DE AGREGACIÓN
+# ============================================
+
+# Promedio de seguidores
+pipeline = [
+    {
+        "$group": {
+            "_id": None,
+            "promedio_seguidores": {"$avg": "$seguidores"},
+            "total_usuarios": {"$sum": 1}
+        }
+    }
+]
+resultado = list(usuarios.aggregate(pipeline))
+
+# Agrupar posts por usuario
+pipeline = [
+    {
+        "$group": {
+            "_id": "$username",
+            "total_posts": {"$sum": 1},
+            "total_likes": {"$sum": "$estadisticas.likes"},
+            "promedio_likes": {"$avg": "$estadisticas.likes"}
+        }
+    },
+    {"$sort": {"total_likes": -1}}
+]
+resultado = list(posts.aggregate(pipeline))
+
+# Contar hashtags
+pipeline = [
+    {"$unwind": "$hashtags"},
+    {
+        "$group": {
+            "_id": "$hashtags",
+            "total_apariciones": {"$sum": 1}
+        }
+    },
+    {"$sort": {"total_apariciones": -1}}
+]
+resultado = list(posts.aggregate(pipeline))
+
+# Join entre colecciones
+pipeline = [
+    {
+        "$lookup": {
+            "from": "usuarios",
+            "localField": "usuario_id",
+            "foreignField": "_id",
+            "as": "usuario_info"
+        }
+    },
+    {"$unwind": "$usuario_info"},
+    {
+        "$project": {
+            "username": 1,
+            "contenido": 1,
+            "likes": "$estadisticas.likes",
+            "ciudad_usuario": "$usuario_info.ubicacion.ciudad",
+            "seguidores_usuario": "$usuario_info.seguidores"
+        }
+    }
+]
+resultado = list(posts.aggregate(pipeline))
+
+client.close()
+```
+
+---
+
 ## 📁 Estructura del Proyecto
 
 ```
 fase2-mongodb/
 │
-├── README.md                      # Este archivo
-├── ESQUEMA_REDES_SOCIALES.md      # Documentación detallada del esquema
-├── comandos_mongodb.py            # Script para crear BD e insertar datos
-└── consultas_mongodb.py           # Script con todas las consultas
+├── README.md                           # Este archivo
+├── ESQUEMA_REDES_SOCIALES.md           # Documentación detallada del esquema
+├── comandos_mongodb.py                 # Script para crear BD e insertar datos
+├── consultas_mongodb.py                # Script con todas las consultas
+├── requirements.txt                    # Dependencias Python
+├── red_social.png                      # Esquema de BD (MongoDB Compass)
+└── esquema_base_datos_red_social.png   # Diagrama del esquema
 ```
 
 ---
