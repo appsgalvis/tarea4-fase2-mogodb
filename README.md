@@ -159,7 +159,11 @@ Para más detalles sobre el esquema, consulta [ESQUEMA_REDES_SOCIALES.md](ESQUEM
 
 ## 🚀 Ejecución Paso a Paso
 
-### Paso 1: Crear la Base de Datos e Insertar Datos
+Puedes ejecutar los comandos usando **Python (PyMongo)** o directamente desde la **consola de MongoDB (mongosh)**. Ambas opciones están disponibles en este repositorio.
+
+### Opción 1: Usando Python (PyMongo)
+
+#### Paso 1: Crear la Base de Datos e Insertar Datos
 
 Ejecuta el script `comandos_mongodb.py` para crear la base de datos, las colecciones y los datos de prueba:
 
@@ -194,7 +198,7 @@ Total: 6 documentos
 Conexión cerrada
 ```
 
-### Paso 2: Ejecutar Consultas
+#### Paso 2: Ejecutar Consultas
 
 Ejecuta el script `consultas_mongodb.py` para ver todas las consultas implementadas:
 
@@ -214,9 +218,81 @@ El script mostrará en consola todos los resultados de las consultas organizadas
 
 ---
 
+### Opción 2: Usando Consola MongoDB (mongosh)
+
+#### Paso 1: Crear la Base de Datos e Insertar Datos
+
+Abre la consola de MongoDB:
+
+```bash
+mongosh
+```
+
+Luego ejecuta el script de comandos de consola. Tienes dos opciones:
+
+**Opción A: Ejecutar desde archivo**
+```bash
+mongosh < comandos_mongodb_consola.js
+```
+
+**Opción B: Copiar y pegar comandos**
+1. Abre `comandos_mongodb_consola.js` en un editor
+2. Copia todo el contenido
+3. Pégalo en la consola de `mongosh`
+
+**¿Qué hace este script?**
+
+1. **Selecciona la base de datos**: Usa `use red_social`
+2. **Inserta usuarios**: Crea 2 usuarios de prueba
+3. **Inserta posts**: Crea 2 posts asociados a los usuarios
+4. **Inserta comentarios**: Crea 2 comentarios con respuestas anidadas
+5. **Crea índices**: Crea índices para optimizar las consultas
+6. **Muestra resumen**: Imprime el total de documentos insertados
+
+**Salida esperada:**
+
+```
+Usuarios insertados: 2
+Posts insertados: 2
+Comentarios insertados: 2
+Índices creados exitosamente
+
+=== RESUMEN DE DATOS INSERTADOS ===
+Usuarios: 2
+Posts: 2
+Comentarios: 2
+Total: 6 documentos
+
+✅ Base de datos creada exitosamente
+```
+
+#### Paso 2: Ejecutar Consultas
+
+Ejecuta el script de consultas de consola:
+
+```bash
+mongosh red_social < consultas_mongodb_consola.js
+```
+
+O copia y pega los comandos desde `consultas_mongodb_consola.js` directamente en `mongosh`.
+
+Este script ejecuta y muestra los resultados de:
+
+1. **Consultas básicas CRUD** (Inserción, Selección, Actualización, Eliminación)
+2. **Consultas con filtros y operadores** (Comparación, Lógicos, Arrays)
+3. **Consultas de agregación** (Promedios, Sumas, Agrupaciones, Joins)
+
+**Salida esperada:**
+
+El script mostrará en consola todos los resultados de las consultas organizadas por categorías.
+
+---
+
 ## 💻 Código Fuente
 
-### Script: `comandos_mongodb.py`
+### Opción 1: Python (PyMongo)
+
+#### Script: `comandos_mongodb.py`
 
 Este script crea la base de datos, las colecciones e inserta los datos de prueba:
 
@@ -431,9 +507,129 @@ client.close()
 print("\nConexión cerrada")
 ```
 
-### Script: `consultas_mongodb.py`
+#### Script: `consultas_mongodb.py`
 
 Este script contiene todas las consultas implementadas. Para ver el código completo, consulta el archivo [consultas_mongodb.py](consultas_mongodb.py) en el repositorio.
+
+---
+
+### Opción 2: Consola MongoDB (mongosh)
+
+#### Script: `comandos_mongodb_consola.js`
+
+Este script crea la base de datos, las colecciones e inserta los datos de prueba usando comandos de consola MongoDB:
+
+```javascript
+// Crear/seleccionar base de datos
+use red_social
+
+// Insertar usuarios
+db.usuarios.insertMany([
+    {
+        "username": "juan_perez",
+        "email": "juan.perez@email.com",
+        "nombre_completo": "Juan Pérez",
+        "fecha_registro": ISODate("2024-01-10T10:30:00Z"),
+        "seguidores": 1250,
+        "siguiendo": 450,
+        "ubicacion": {
+            "ciudad": "Bogotá",
+            "pais": "Colombia"
+        },
+        "activo": true
+    },
+    {
+        "username": "maria_garcia",
+        "email": "maria.garcia@email.com",
+        "nombre_completo": "María García",
+        "fecha_registro": ISODate("2024-02-15T14:20:00Z"),
+        "seguidores": 890,
+        "siguiendo": 320,
+        "ubicacion": {
+            "ciudad": "Medellín",
+            "pais": "Colombia"
+        },
+        "activo": true
+    }
+])
+
+// Obtener IDs para referencias
+var juan = db.usuarios.findOne({"username": "juan_perez"})
+var maria = db.usuarios.findOne({"username": "maria_garcia"})
+
+// Insertar posts
+db.posts.insertMany([
+    {
+        "usuario_id": juan._id,
+        "username": "juan_perez",
+        "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #programacion #mongodb #bigdata",
+        "fecha_publicacion": ISODate("2024-12-15T14:30:00Z"),
+        "estadisticas": {
+            "likes": 45,
+            "comentarios": 12,
+            "compartidos": 8,
+            "visualizaciones": 320
+        },
+        "hashtags": ["programacion", "mongodb", "bigdata"],
+        "activo": true
+    }
+])
+
+// Crear índices
+db.usuarios.createIndex({"username": 1}, {"unique": true})
+db.usuarios.createIndex({"email": 1}, {"unique": true})
+db.posts.createIndex({"usuario_id": 1})
+db.posts.createIndex({"fecha_publicacion": -1})
+```
+
+#### Script: `consultas_mongodb_consola.js`
+
+Este script contiene todas las consultas implementadas en formato de consola MongoDB. Para ver el código completo, consulta el archivo [consultas_mongodb_consola.js](consultas_mongodb_consola.js) en el repositorio.
+
+**Ejemplo de consultas básicas:**
+
+```javascript
+use red_social
+
+// INSERCIÓN
+db.usuarios.insertOne({
+    "username": "pedro_sanchez",
+    "email": "pedro.sanchez@email.com",
+    "nombre_completo": "Pedro Sánchez",
+    "fecha_registro": new Date(),
+    "seguidores": 500,
+    "siguiendo": 200,
+    "ubicacion": {"ciudad": "Cartagena", "pais": "Colombia"}
+})
+
+// SELECCIÓN
+db.usuarios.find()
+db.usuarios.findOne({"username": "juan_perez"})
+
+// ACTUALIZACIÓN
+db.usuarios.updateOne(
+    {"username": "juan_perez"},
+    {"$set": {"seguidores": 1300}}
+)
+
+// ELIMINACIÓN
+db.comentarios.deleteOne({"username": "test_user"})
+
+// CONSULTAS CON FILTROS
+db.usuarios.find({"seguidores": {$gt: 1000}})
+db.posts.find({"estadisticas.likes": {$lt: 50}})
+
+// CONSULTAS DE AGREGACIÓN
+db.usuarios.aggregate([
+    {
+        $group: {
+            _id: null,
+            promedio_seguidores: {$avg: "$seguidores"},
+            total_usuarios: {$sum: 1}
+        }
+    }
+])
+```
 
 **Ejemplo de consultas básicas:**
 
@@ -579,20 +775,32 @@ fase2-mongodb/
 │
 ├── README.md                           # Este archivo
 ├── ESQUEMA_REDES_SOCIALES.md           # Documentación detallada del esquema
-├── comandos_mongodb.py                 # Script para crear BD e insertar datos
-├── consultas_mongodb.py                # Script con todas las consultas
+│
+├── [Python - PyMongo]
+├── comandos_mongodb.py                 # Script Python para crear BD e insertar datos
+├── consultas_mongodb.py                # Script Python con todas las consultas
 ├── requirements.txt                    # Dependencias Python
-├── red_social.png                      # Esquema de BD (MongoDB Compass)
-└── esquema_base_datos_red_social.png   # Diagrama del esquema
+│
+├── [Consola MongoDB - mongosh]
+├── comandos_mongodb_consola.js         # Script de consola para crear BD e insertar datos
+├── consultas_mongodb_consola.js        # Script de consola con todas las consultas
+│
+└── [Recursos]
+    ├── red_social.png                   # Esquema de BD (MongoDB Compass)
+    └── esquema_base_datos_red_social.png # Diagrama del esquema
 ```
 
 ---
 
 ## 🔍 Consultas Implementadas
 
+Todas las consultas están disponibles tanto en **Python (PyMongo)** como en **Consola MongoDB (mongosh)**.
+
 ### 4.2.2 Consultas Básicas (CRUD)
 
 #### Inserción
+
+**Python:**
 ```python
 nuevo_usuario = {
     "username": "pedro_sanchez",
@@ -606,7 +814,22 @@ nuevo_usuario = {
 resultado = usuarios.insert_one(nuevo_usuario)
 ```
 
+**Consola MongoDB:**
+```javascript
+db.usuarios.insertOne({
+    "username": "pedro_sanchez",
+    "email": "pedro.sanchez@email.com",
+    "nombre_completo": "Pedro Sánchez",
+    "fecha_registro": new Date(),
+    "seguidores": 500,
+    "siguiendo": 200,
+    "ubicacion": {"ciudad": "Cartagena", "pais": "Colombia"}
+})
+```
+
 #### Selección
+
+**Python:**
 ```python
 # Todos los usuarios
 todos_usuarios = list(usuarios.find())
@@ -618,7 +841,21 @@ usuario = usuarios.find_one({"username": "juan_perez"})
 usuarios = list(usuarios.find({}, {"username": 1, "email": 1, "seguidores": 1}))
 ```
 
+**Consola MongoDB:**
+```javascript
+// Todos los usuarios
+db.usuarios.find()
+
+// Usuario específico
+db.usuarios.findOne({"username": "juan_perez"})
+
+// Con proyección (solo campos específicos)
+db.usuarios.find({}, {"username": 1, "email": 1, "seguidores": 1})
+```
+
 #### Actualización
+
+**Python:**
 ```python
 # Actualizar un campo
 usuarios.update_one(
@@ -633,7 +870,24 @@ posts.update_one(
 )
 ```
 
+**Consola MongoDB:**
+```javascript
+// Actualizar un campo
+db.usuarios.updateOne(
+    {"username": "juan_perez"},
+    {"$set": {"seguidores": 1300}}
+)
+
+// Incrementar un valor
+db.posts.updateOne(
+    {"username": "maria_garcia"},
+    {"$inc": {"estadisticas.likes": 5}}
+)
+```
+
 #### Eliminación
+
+**Python:**
 ```python
 # Soft delete (marcar como inactivo)
 comentarios.update_one(
@@ -642,9 +896,20 @@ comentarios.update_one(
 )
 ```
 
+**Consola MongoDB:**
+```javascript
+// Soft delete (marcar como inactivo)
+db.comentarios.updateOne(
+    {"username": "juan_perez", "activo": true},
+    {"$set": {"activo": false}}
+)
+```
+
 ### 4.2.3 Consultas con Filtros y Operadores
 
 #### Operadores de Comparación
+
+**Python:**
 ```python
 # Mayor que
 usuarios.find({"seguidores": {"$gt": 1000}})
@@ -659,7 +924,24 @@ usuarios.find({"seguidores": {"$gte": 800, "$lte": 1500}})
 posts.find({"username": {"$ne": "juan_perez"}})
 ```
 
+**Consola MongoDB:**
+```javascript
+// Mayor que
+db.usuarios.find({"seguidores": {$gt: 1000}})
+
+// Menor que
+db.posts.find({"estadisticas.likes": {$lt: 50}})
+
+// Rango
+db.usuarios.find({"seguidores": {$gte: 800, $lte: 1500}})
+
+// Diferente
+db.posts.find({"username": {$ne: "juan_perez"}})
+```
+
 #### Operadores Lógicos
+
+**Python:**
 ```python
 # AND
 posts.find({
@@ -678,7 +960,28 @@ usuarios.find({
 })
 ```
 
+**Consola MongoDB:**
+```javascript
+// AND
+db.posts.find({
+    $and: [
+        {"estadisticas.likes": {$gt: 40}},
+        {"estadisticas.comentarios": {$gt: 10}}
+    ]
+})
+
+// OR
+db.usuarios.find({
+    $or: [
+        {"ubicacion.ciudad": "Bogotá"},
+        {"ubicacion.ciudad": "Medellín"}
+    ]
+})
+```
+
 #### Operadores de Array
+
+**Python:**
 ```python
 # Buscar en array
 posts.find({"hashtags": "mongodb"})
@@ -690,9 +993,23 @@ posts.find({"hashtags": {"$in": ["programacion", "diseño"]}})
 posts.find({"hashtags": {"$all": ["mongodb", "bigdata"]}})
 ```
 
+**Consola MongoDB:**
+```javascript
+// Buscar en array
+db.posts.find({"hashtags": "mongodb"})
+
+// Contiene cualquiera de los valores
+db.posts.find({"hashtags": {$in: ["programacion", "diseño"]}})
+
+// Debe contener todos los valores
+db.posts.find({"hashtags": {$all: ["mongodb", "bigdata"]}})
+```
+
 ### 4.2.4 Consultas de Agregación
 
 #### Promedio
+
+**Python:**
 ```python
 pipeline = [
     {
@@ -706,7 +1023,22 @@ pipeline = [
 resultado = list(usuarios.aggregate(pipeline))
 ```
 
+**Consola MongoDB:**
+```javascript
+db.usuarios.aggregate([
+    {
+        $group: {
+            _id: null,
+            promedio_seguidores: {$avg: "$seguidores"},
+            total_usuarios: {$sum: 1}
+        }
+    }
+])
+```
+
 #### Suma
+
+**Python:**
 ```python
 pipeline = [
     {
@@ -720,7 +1052,22 @@ pipeline = [
 resultado = list(posts.aggregate(pipeline))
 ```
 
+**Consola MongoDB:**
+```javascript
+db.posts.aggregate([
+    {
+        $group: {
+            _id: null,
+            total_likes: {$sum: "$estadisticas.likes"},
+            total_comentarios: {$sum: "$estadisticas.comentarios"}
+        }
+    }
+])
+```
+
 #### Agrupación
+
+**Python:**
 ```python
 pipeline = [
     {
@@ -736,7 +1083,24 @@ pipeline = [
 resultado = list(posts.aggregate(pipeline))
 ```
 
+**Consola MongoDB:**
+```javascript
+db.posts.aggregate([
+    {
+        $group: {
+            _id: "$username",
+            total_posts: {$sum: 1},
+            total_likes: {$sum: "$estadisticas.likes"},
+            promedio_likes: {$avg: "$estadisticas.likes"}
+        }
+    },
+    {$sort: {"total_likes": -1}}
+])
+```
+
 #### Unwind (Descomponer Arrays)
+
+**Python:**
 ```python
 pipeline = [
     {"$unwind": "$hashtags"},
@@ -751,7 +1115,23 @@ pipeline = [
 resultado = list(posts.aggregate(pipeline))
 ```
 
+**Consola MongoDB:**
+```javascript
+db.posts.aggregate([
+    {$unwind: "$hashtags"},
+    {
+        $group: {
+            _id: "$hashtags",
+            total_apariciones: {$sum: 1}
+        }
+    },
+    {$sort: {"total_apariciones": -1}}
+])
+```
+
 #### Lookup (Join entre colecciones)
+
+**Python:**
 ```python
 pipeline = [
     {
@@ -774,6 +1154,30 @@ pipeline = [
     }
 ]
 resultado = list(posts.aggregate(pipeline))
+```
+
+**Consola MongoDB:**
+```javascript
+db.posts.aggregate([
+    {
+        $lookup: {
+            from: "usuarios",
+            localField: "usuario_id",
+            foreignField: "_id",
+            as: "usuario_info"
+        }
+    },
+    {$unwind: "$usuario_info"},
+    {
+        $project: {
+            username: 1,
+            contenido: 1,
+            likes: "$estadisticas.likes",
+            ciudad_usuario: "$usuario_info.ubicacion.ciudad",
+            seguidores_usuario: "$usuario_info.seguidores"
+        }
+    }
+])
 ```
 
 ---
@@ -826,8 +1230,11 @@ Este proyecto es parte de una tarea académica y se proporciona únicamente con 
 
 ## 📝 Notas Finales
 
+- **Dos opciones disponibles**: Puedes usar Python (PyMongo) o Consola MongoDB (mongosh)
 - Los scripts están comentados para facilitar la comprensión
-- Se recomienda ejecutar primero `comandos_mongodb.py` y luego `consultas_mongodb.py`
-- Para empezar desde cero, descomenta las líneas de limpieza en `comandos_mongodb.py`
+- **Python**: Se recomienda ejecutar primero `comandos_mongodb.py` y luego `consultas_mongodb.py`
+- **Consola**: Se recomienda ejecutar primero `comandos_mongodb_consola.js` y luego `consultas_mongodb_consola.js`
+- Para empezar desde cero, descomenta las líneas de limpieza en los scripts correspondientes
 - Los datos de prueba pueden expandirse para cumplir con el requisito de 100+ documentos
+- Ambos métodos (Python y consola) producen los mismos resultados
 
