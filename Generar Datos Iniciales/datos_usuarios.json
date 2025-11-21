@@ -1,0 +1,522 @@
+[
+  {
+    "username": "juan_pérez_0",
+    "email": "juan.pérez0@email.com",
+    "nombre_completo": "Juan Pérez",
+    "fecha_registro": "2024-01-01T15:25:00Z",
+    "seguidores": 4115,
+    "siguiendo": 880,
+    "ubicacion": {
+      "ciudad": "Bogotá",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "maría_garcía_1",
+    "email": "maría.garcía1@email.com",
+    "nombre_completo": "María García",
+    "fecha_registro": "2024-01-04T09:42:00Z",
+    "seguidores": 4348,
+    "siguiendo": 1195,
+    "ubicacion": {
+      "ciudad": "Medellín",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "carlos_rodríguez_2",
+    "email": "carlos.rodríguez2@email.com",
+    "nombre_completo": "Carlos Rodríguez",
+    "fecha_registro": "2024-01-07T08:47:00Z",
+    "seguidores": 565,
+    "siguiendo": 735,
+    "ubicacion": {
+      "ciudad": "Cali",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "ana_lópez_3",
+    "email": "ana.lópez3@email.com",
+    "nombre_completo": "Ana López",
+    "fecha_registro": "2024-01-10T12:17:00Z",
+    "seguidores": 1976,
+    "siguiendo": 1753,
+    "ubicacion": {
+      "ciudad": "Barranquilla",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "luis_martínez_4",
+    "email": "luis.martínez4@email.com",
+    "nombre_completo": "Luis Martínez",
+    "fecha_registro": "2024-01-13T16:39:00Z",
+    "seguidores": 2807,
+    "siguiendo": 88,
+    "ubicacion": {
+      "ciudad": "Cartagena",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "laura_gonzález_5",
+    "email": "laura.gonzález5@email.com",
+    "nombre_completo": "Laura González",
+    "fecha_registro": "2024-01-16T17:29:00Z",
+    "seguidores": 4162,
+    "siguiendo": 1150,
+    "ubicacion": {
+      "ciudad": "Bucaramanga",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "pedro_fernández_6",
+    "email": "pedro.fernández6@email.com",
+    "nombre_completo": "Pedro Fernández",
+    "fecha_registro": "2024-01-19T18:21:00Z",
+    "seguidores": 4885,
+    "siguiendo": 1804,
+    "ubicacion": {
+      "ciudad": "Pereira",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "sofía_sánchez_7",
+    "email": "sofía.sánchez7@email.com",
+    "nombre_completo": "Sofía Sánchez",
+    "fecha_registro": "2024-01-22T08:39:00Z",
+    "seguidores": 2266,
+    "siguiendo": 350,
+    "ubicacion": {
+      "ciudad": "Santa Marta",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "diego_ramírez_8",
+    "email": "diego.ramírez8@email.com",
+    "nombre_completo": "Diego Ramírez",
+    "fecha_registro": "2024-01-25T16:18:00Z",
+    "seguidores": 1572,
+    "siguiendo": 829,
+    "ubicacion": {
+      "ciudad": "Manizales",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "valentina_torres_9",
+    "email": "valentina.torres9@email.com",
+    "nombre_completo": "Valentina Torres",
+    "fecha_registro": "2024-01-28T09:50:00Z",
+    "seguidores": 1096,
+    "siguiendo": 1003,
+    "ubicacion": {
+      "ciudad": "Armenia",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "andrés_díaz_10",
+    "email": "andrés.díaz10@email.com",
+    "nombre_completo": "Andrés Díaz",
+    "fecha_registro": "2024-01-31T08:59:00Z",
+    "seguidores": 4384,
+    "siguiendo": 82,
+    "ubicacion": {
+      "ciudad": "Bogotá",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "camila_moreno_11",
+    "email": "camila.moreno11@email.com",
+    "nombre_completo": "Camila Moreno",
+    "fecha_registro": "2024-02-03T15:16:00Z",
+    "seguidores": 2146,
+    "siguiendo": 1855,
+    "ubicacion": {
+      "ciudad": "Medellín",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "sebastián_jiménez_12",
+    "email": "sebastián.jiménez12@email.com",
+    "nombre_completo": "Sebastián Jiménez",
+    "fecha_registro": "2024-02-06T08:51:00Z",
+    "seguidores": 1525,
+    "siguiendo": 1890,
+    "ubicacion": {
+      "ciudad": "Cali",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "isabella_ruiz_13",
+    "email": "isabella.ruiz13@email.com",
+    "nombre_completo": "Isabella Ruiz",
+    "fecha_registro": "2024-02-09T14:01:00Z",
+    "seguidores": 2104,
+    "siguiendo": 1712,
+    "ubicacion": {
+      "ciudad": "Barranquilla",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "nicolás_hernández_14",
+    "email": "nicolás.hernández14@email.com",
+    "nombre_completo": "Nicolás Hernández",
+    "fecha_registro": "2024-02-12T08:47:00Z",
+    "seguidores": 1666,
+    "siguiendo": 1891,
+    "ubicacion": {
+      "ciudad": "Cartagena",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "juan_pérez_15",
+    "email": "juan.pérez15@email.com",
+    "nombre_completo": "Juan Pérez",
+    "fecha_registro": "2024-02-15T10:24:00Z",
+    "seguidores": 3227,
+    "siguiendo": 1489,
+    "ubicacion": {
+      "ciudad": "Bucaramanga",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "maría_garcía_16",
+    "email": "maría.garcía16@email.com",
+    "nombre_completo": "María García",
+    "fecha_registro": "2024-02-18T18:14:00Z",
+    "seguidores": 1080,
+    "siguiendo": 1771,
+    "ubicacion": {
+      "ciudad": "Pereira",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "carlos_rodríguez_17",
+    "email": "carlos.rodríguez17@email.com",
+    "nombre_completo": "Carlos Rodríguez",
+    "fecha_registro": "2024-02-21T08:28:00Z",
+    "seguidores": 936,
+    "siguiendo": 1158,
+    "ubicacion": {
+      "ciudad": "Santa Marta",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "ana_lópez_18",
+    "email": "ana.lópez18@email.com",
+    "nombre_completo": "Ana López",
+    "fecha_registro": "2024-02-24T17:51:00Z",
+    "seguidores": 1984,
+    "siguiendo": 374,
+    "ubicacion": {
+      "ciudad": "Manizales",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "luis_martínez_19",
+    "email": "luis.martínez19@email.com",
+    "nombre_completo": "Luis Martínez",
+    "fecha_registro": "2024-02-27T13:53:00Z",
+    "seguidores": 987,
+    "siguiendo": 1248,
+    "ubicacion": {
+      "ciudad": "Armenia",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "laura_gonzález_20",
+    "email": "laura.gonzález20@email.com",
+    "nombre_completo": "Laura González",
+    "fecha_registro": "2024-03-01T17:32:00Z",
+    "seguidores": 3595,
+    "siguiendo": 1415,
+    "ubicacion": {
+      "ciudad": "Bogotá",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "pedro_fernández_21",
+    "email": "pedro.fernández21@email.com",
+    "nombre_completo": "Pedro Fernández",
+    "fecha_registro": "2024-03-04T13:55:00Z",
+    "seguidores": 2996,
+    "siguiendo": 283,
+    "ubicacion": {
+      "ciudad": "Medellín",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "sofía_sánchez_22",
+    "email": "sofía.sánchez22@email.com",
+    "nombre_completo": "Sofía Sánchez",
+    "fecha_registro": "2024-03-07T14:38:00Z",
+    "seguidores": 106,
+    "siguiendo": 844,
+    "ubicacion": {
+      "ciudad": "Cali",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "diego_ramírez_23",
+    "email": "diego.ramírez23@email.com",
+    "nombre_completo": "Diego Ramírez",
+    "fecha_registro": "2024-03-10T17:03:00Z",
+    "seguidores": 744,
+    "siguiendo": 916,
+    "ubicacion": {
+      "ciudad": "Barranquilla",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "valentina_torres_24",
+    "email": "valentina.torres24@email.com",
+    "nombre_completo": "Valentina Torres",
+    "fecha_registro": "2024-03-13T11:42:00Z",
+    "seguidores": 3914,
+    "siguiendo": 408,
+    "ubicacion": {
+      "ciudad": "Cartagena",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "andrés_díaz_25",
+    "email": "andrés.díaz25@email.com",
+    "nombre_completo": "Andrés Díaz",
+    "fecha_registro": "2024-03-16T13:26:00Z",
+    "seguidores": 3378,
+    "siguiendo": 561,
+    "ubicacion": {
+      "ciudad": "Bucaramanga",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "camila_moreno_26",
+    "email": "camila.moreno26@email.com",
+    "nombre_completo": "Camila Moreno",
+    "fecha_registro": "2024-03-19T16:56:00Z",
+    "seguidores": 2044,
+    "siguiendo": 741,
+    "ubicacion": {
+      "ciudad": "Pereira",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "sebastián_jiménez_27",
+    "email": "sebastián.jiménez27@email.com",
+    "nombre_completo": "Sebastián Jiménez",
+    "fecha_registro": "2024-03-22T13:23:00Z",
+    "seguidores": 559,
+    "siguiendo": 1599,
+    "ubicacion": {
+      "ciudad": "Santa Marta",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "isabella_ruiz_28",
+    "email": "isabella.ruiz28@email.com",
+    "nombre_completo": "Isabella Ruiz",
+    "fecha_registro": "2024-03-25T16:06:00Z",
+    "seguidores": 1702,
+    "siguiendo": 440,
+    "ubicacion": {
+      "ciudad": "Manizales",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "nicolás_hernández_29",
+    "email": "nicolás.hernández29@email.com",
+    "nombre_completo": "Nicolás Hernández",
+    "fecha_registro": "2024-03-28T17:36:00Z",
+    "seguidores": 467,
+    "siguiendo": 518,
+    "ubicacion": {
+      "ciudad": "Armenia",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "juan_pérez_30",
+    "email": "juan.pérez30@email.com",
+    "nombre_completo": "Juan Pérez",
+    "fecha_registro": "2024-03-31T11:18:00Z",
+    "seguidores": 1967,
+    "siguiendo": 427,
+    "ubicacion": {
+      "ciudad": "Bogotá",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "maría_garcía_31",
+    "email": "maría.garcía31@email.com",
+    "nombre_completo": "María García",
+    "fecha_registro": "2024-04-03T09:01:00Z",
+    "seguidores": 4743,
+    "siguiendo": 933,
+    "ubicacion": {
+      "ciudad": "Medellín",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "carlos_rodríguez_32",
+    "email": "carlos.rodríguez32@email.com",
+    "nombre_completo": "Carlos Rodríguez",
+    "fecha_registro": "2024-04-06T18:51:00Z",
+    "seguidores": 903,
+    "siguiendo": 195,
+    "ubicacion": {
+      "ciudad": "Cali",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "ana_lópez_33",
+    "email": "ana.lópez33@email.com",
+    "nombre_completo": "Ana López",
+    "fecha_registro": "2024-04-09T14:56:00Z",
+    "seguidores": 425,
+    "siguiendo": 1041,
+    "ubicacion": {
+      "ciudad": "Barranquilla",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "luis_martínez_34",
+    "email": "luis.martínez34@email.com",
+    "nombre_completo": "Luis Martínez",
+    "fecha_registro": "2024-04-12T15:41:00Z",
+    "seguidores": 4464,
+    "siguiendo": 377,
+    "ubicacion": {
+      "ciudad": "Cartagena",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "laura_gonzález_35",
+    "email": "laura.gonzález35@email.com",
+    "nombre_completo": "Laura González",
+    "fecha_registro": "2024-04-15T18:18:00Z",
+    "seguidores": 3145,
+    "siguiendo": 159,
+    "ubicacion": {
+      "ciudad": "Bucaramanga",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "pedro_fernández_36",
+    "email": "pedro.fernández36@email.com",
+    "nombre_completo": "Pedro Fernández",
+    "fecha_registro": "2024-04-18T08:18:00Z",
+    "seguidores": 1732,
+    "siguiendo": 1970,
+    "ubicacion": {
+      "ciudad": "Pereira",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "sofía_sánchez_37",
+    "email": "sofía.sánchez37@email.com",
+    "nombre_completo": "Sofía Sánchez",
+    "fecha_registro": "2024-04-21T11:43:00Z",
+    "seguidores": 2844,
+    "siguiendo": 1472,
+    "ubicacion": {
+      "ciudad": "Santa Marta",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "diego_ramírez_38",
+    "email": "diego.ramírez38@email.com",
+    "nombre_completo": "Diego Ramírez",
+    "fecha_registro": "2024-04-24T10:54:00Z",
+    "seguidores": 1472,
+    "siguiendo": 1077,
+    "ubicacion": {
+      "ciudad": "Manizales",
+      "pais": "Colombia"
+    },
+    "activo": true
+  },
+  {
+    "username": "valentina_torres_39",
+    "email": "valentina.torres39@email.com",
+    "nombre_completo": "Valentina Torres",
+    "fecha_registro": "2024-04-27T16:54:00Z",
+    "seguidores": 975,
+    "siguiendo": 1340,
+    "ubicacion": {
+      "ciudad": "Armenia",
+      "pais": "Colombia"
+    },
+    "activo": true
+  }
+]

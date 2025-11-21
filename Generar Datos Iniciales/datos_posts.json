@@ -1,0 +1,840 @@
+[
+  {
+    "usuario_id": "USER_ID_0",
+    "username": "juan_pérez_0",
+    "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #ux #mobile #javascript #educacion",
+    "fecha_publicacion": "2024-01-31T14:20:00Z",
+    "fecha_actualizacion": "2024-01-31T14:20:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 340,
+      "comentarios": 15,
+      "compartidos": 77,
+      "visualizaciones": 4362
+    },
+    "hashtags": [
+      "ux",
+      "mobile",
+      "javascript",
+      "educacion"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_1",
+    "username": "maría_garcía_1",
+    "contenido": "Compartiendo algunos tips de diseño UX para aplicaciones móviles 📱 #javascript #tecnologia",
+    "fecha_publicacion": "2024-02-02T11:26:00Z",
+    "fecha_actualizacion": "2024-02-02T11:26:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 177,
+      "comentarios": 14,
+      "compartidos": 41,
+      "visualizaciones": 2416
+    },
+    "hashtags": [
+      "javascript",
+      "tecnologia"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_2",
+    "username": "carlos_rodríguez_2",
+    "contenido": "Aprendiendo sobre BigData y sus aplicaciones prácticas #educacion #diseño",
+    "fecha_publicacion": "2024-02-04T16:31:00Z",
+    "fecha_actualizacion": "2024-02-04T16:31:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 373,
+      "comentarios": 45,
+      "compartidos": 61,
+      "visualizaciones": 2960
+    },
+    "hashtags": [
+      "educacion",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_3",
+    "username": "ana_lópez_3",
+    "contenido": "Nuevo proyecto en desarrollo usando tecnologías modernas #mongodb #python #educacion",
+    "fecha_publicacion": "2024-02-06T08:49:00Z",
+    "fecha_actualizacion": "2024-02-06T08:49:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 213,
+      "comentarios": 16,
+      "compartidos": 97,
+      "visualizaciones": 4129
+    },
+    "hashtags": [
+      "mongodb",
+      "python",
+      "educacion"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_4",
+    "username": "luis_martínez_4",
+    "contenido": "Tips útiles para desarrolladores principiantes #emprendimiento #javascript #mobile",
+    "fecha_publicacion": "2024-02-08T13:00:00Z",
+    "fecha_actualizacion": "2024-02-08T13:00:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 375,
+      "comentarios": 31,
+      "compartidos": 7,
+      "visualizaciones": 3115
+    },
+    "hashtags": [
+      "emprendimiento",
+      "javascript",
+      "mobile"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_5",
+    "username": "laura_gonzález_5",
+    "contenido": "Explorando las capacidades de MongoDB para proyectos escalables #python #mobile #ux",
+    "fecha_publicacion": "2024-02-10T10:39:00Z",
+    "fecha_actualizacion": "2024-02-10T10:39:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 253,
+      "comentarios": 6,
+      "compartidos": 1,
+      "visualizaciones": 3905
+    },
+    "hashtags": [
+      "python",
+      "mobile",
+      "ux"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_6",
+    "username": "pedro_fernández_6",
+    "contenido": "Diseño de interfaces intuitivas y accesibles #emprendimiento #javascript",
+    "fecha_publicacion": "2024-02-12T12:31:00Z",
+    "fecha_actualizacion": "2024-02-12T12:31:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 98,
+      "comentarios": 43,
+      "compartidos": 38,
+      "visualizaciones": 2171
+    },
+    "hashtags": [
+      "emprendimiento",
+      "javascript"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_7",
+    "username": "sofía_sánchez_7",
+    "contenido": "Análisis de datos con herramientas modernas #bigdata #startup #python #mobile",
+    "fecha_publicacion": "2024-02-14T20:49:00Z",
+    "fecha_actualizacion": "2024-02-14T20:49:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 137,
+      "comentarios": 2,
+      "compartidos": 57,
+      "visualizaciones": 1447
+    },
+    "hashtags": [
+      "bigdata",
+      "startup",
+      "python",
+      "mobile"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_8",
+    "username": "diego_ramírez_8",
+    "contenido": "Compartiendo mi experiencia con bases de datos NoSQL #tecnologia #diseño",
+    "fecha_publicacion": "2024-02-16T10:08:00Z",
+    "fecha_actualizacion": "2024-02-16T10:08:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 151,
+      "comentarios": 25,
+      "compartidos": 17,
+      "visualizaciones": 1552
+    },
+    "hashtags": [
+      "tecnologia",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_9",
+    "username": "valentina_torres_9",
+    "contenido": "Proyecto colaborativo en desarrollo #programacion #startup",
+    "fecha_publicacion": "2024-02-18T14:24:00Z",
+    "fecha_actualizacion": "2024-02-18T14:24:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 398,
+      "comentarios": 5,
+      "compartidos": 26,
+      "visualizaciones": 4856
+    },
+    "hashtags": [
+      "programacion",
+      "startup"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_10",
+    "username": "andrés_díaz_10",
+    "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #mobile #diseño #desarrollo",
+    "fecha_publicacion": "2024-02-20T19:32:00Z",
+    "fecha_actualizacion": "2024-02-20T19:32:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 271,
+      "comentarios": 40,
+      "compartidos": 57,
+      "visualizaciones": 3581
+    },
+    "hashtags": [
+      "mobile",
+      "diseño",
+      "desarrollo"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_11",
+    "username": "camila_moreno_11",
+    "contenido": "Compartiendo algunos tips de diseño UX para aplicaciones móviles 📱 #web #javascript #desarrollo #diseño",
+    "fecha_publicacion": "2024-02-22T15:11:00Z",
+    "fecha_actualizacion": "2024-02-22T15:11:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 125,
+      "comentarios": 15,
+      "compartidos": 92,
+      "visualizaciones": 1513
+    },
+    "hashtags": [
+      "web",
+      "javascript",
+      "desarrollo",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_12",
+    "username": "sebastián_jiménez_12",
+    "contenido": "Aprendiendo sobre BigData y sus aplicaciones prácticas #ux #programacion",
+    "fecha_publicacion": "2024-02-24T18:21:00Z",
+    "fecha_actualizacion": "2024-02-24T18:21:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 361,
+      "comentarios": 25,
+      "compartidos": 47,
+      "visualizaciones": 4498
+    },
+    "hashtags": [
+      "ux",
+      "programacion"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_13",
+    "username": "isabella_ruiz_13",
+    "contenido": "Nuevo proyecto en desarrollo usando tecnologías modernas #bigdata #innovacion #diseño",
+    "fecha_publicacion": "2024-02-26T18:33:00Z",
+    "fecha_actualizacion": "2024-02-26T18:33:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 452,
+      "comentarios": 41,
+      "compartidos": 65,
+      "visualizaciones": 3523
+    },
+    "hashtags": [
+      "bigdata",
+      "innovacion",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_14",
+    "username": "nicolás_hernández_14",
+    "contenido": "Tips útiles para desarrolladores principiantes #web #desarrollo #diseño",
+    "fecha_publicacion": "2024-02-28T09:59:00Z",
+    "fecha_actualizacion": "2024-02-28T09:59:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 389,
+      "comentarios": 49,
+      "compartidos": 23,
+      "visualizaciones": 2100
+    },
+    "hashtags": [
+      "web",
+      "desarrollo",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_15",
+    "username": "juan_pérez_15",
+    "contenido": "Explorando las capacidades de MongoDB para proyectos escalables #programacion #mobile #bigdata",
+    "fecha_publicacion": "2024-03-01T16:01:00Z",
+    "fecha_actualizacion": "2024-03-01T16:01:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 228,
+      "comentarios": 6,
+      "compartidos": 66,
+      "visualizaciones": 1527
+    },
+    "hashtags": [
+      "programacion",
+      "mobile",
+      "bigdata"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_16",
+    "username": "maría_garcía_16",
+    "contenido": "Diseño de interfaces intuitivas y accesibles #diseño #tecnologia",
+    "fecha_publicacion": "2024-03-03T14:11:00Z",
+    "fecha_actualizacion": "2024-03-03T14:11:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 158,
+      "comentarios": 32,
+      "compartidos": 92,
+      "visualizaciones": 2991
+    },
+    "hashtags": [
+      "diseño",
+      "tecnologia"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_17",
+    "username": "carlos_rodríguez_17",
+    "contenido": "Análisis de datos con herramientas modernas #web #ux",
+    "fecha_publicacion": "2024-03-05T10:37:00Z",
+    "fecha_actualizacion": "2024-03-05T10:37:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 188,
+      "comentarios": 18,
+      "compartidos": 98,
+      "visualizaciones": 1609
+    },
+    "hashtags": [
+      "web",
+      "ux"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_18",
+    "username": "ana_lópez_18",
+    "contenido": "Compartiendo mi experiencia con bases de datos NoSQL #javascript #python #innovacion #diseño",
+    "fecha_publicacion": "2024-03-07T11:31:00Z",
+    "fecha_actualizacion": "2024-03-07T11:31:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 70,
+      "comentarios": 47,
+      "compartidos": 5,
+      "visualizaciones": 2143
+    },
+    "hashtags": [
+      "javascript",
+      "python",
+      "innovacion",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_19",
+    "username": "luis_martínez_19",
+    "contenido": "Proyecto colaborativo en desarrollo #bigdata #programacion #diseño",
+    "fecha_publicacion": "2024-03-09T09:22:00Z",
+    "fecha_actualizacion": "2024-03-09T09:22:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 241,
+      "comentarios": 13,
+      "compartidos": 27,
+      "visualizaciones": 2808
+    },
+    "hashtags": [
+      "bigdata",
+      "programacion",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_20",
+    "username": "laura_gonzález_20",
+    "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #bigdata #ux #startup #diseño",
+    "fecha_publicacion": "2024-03-11T09:52:00Z",
+    "fecha_actualizacion": "2024-03-11T09:52:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 99,
+      "comentarios": 34,
+      "compartidos": 35,
+      "visualizaciones": 1370
+    },
+    "hashtags": [
+      "bigdata",
+      "ux",
+      "startup",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_21",
+    "username": "pedro_fernández_21",
+    "contenido": "Compartiendo algunos tips de diseño UX para aplicaciones móviles 📱 #python #diseño #tecnologia",
+    "fecha_publicacion": "2024-03-13T19:03:00Z",
+    "fecha_actualizacion": "2024-03-13T19:03:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 407,
+      "comentarios": 50,
+      "compartidos": 93,
+      "visualizaciones": 944
+    },
+    "hashtags": [
+      "python",
+      "diseño",
+      "tecnologia"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_22",
+    "username": "sofía_sánchez_22",
+    "contenido": "Aprendiendo sobre BigData y sus aplicaciones prácticas #bigdata #desarrollo #emprendimiento #javascript",
+    "fecha_publicacion": "2024-03-15T11:05:00Z",
+    "fecha_actualizacion": "2024-03-15T11:05:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 198,
+      "comentarios": 11,
+      "compartidos": 100,
+      "visualizaciones": 1713
+    },
+    "hashtags": [
+      "bigdata",
+      "desarrollo",
+      "emprendimiento",
+      "javascript"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_23",
+    "username": "diego_ramírez_23",
+    "contenido": "Nuevo proyecto en desarrollo usando tecnologías modernas #diseño #startup",
+    "fecha_publicacion": "2024-03-17T10:32:00Z",
+    "fecha_actualizacion": "2024-03-17T10:32:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 473,
+      "comentarios": 13,
+      "compartidos": 94,
+      "visualizaciones": 3935
+    },
+    "hashtags": [
+      "diseño",
+      "startup"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_24",
+    "username": "valentina_torres_24",
+    "contenido": "Tips útiles para desarrolladores principiantes #bigdata #tecnologia #mobile #mongodb",
+    "fecha_publicacion": "2024-03-19T18:10:00Z",
+    "fecha_actualizacion": "2024-03-19T18:10:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 302,
+      "comentarios": 38,
+      "compartidos": 32,
+      "visualizaciones": 3596
+    },
+    "hashtags": [
+      "bigdata",
+      "tecnologia",
+      "mobile",
+      "mongodb"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_25",
+    "username": "andrés_díaz_25",
+    "contenido": "Explorando las capacidades de MongoDB para proyectos escalables #mobile #bigdata",
+    "fecha_publicacion": "2024-03-21T14:39:00Z",
+    "fecha_actualizacion": "2024-03-21T14:39:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 380,
+      "comentarios": 17,
+      "compartidos": 52,
+      "visualizaciones": 992
+    },
+    "hashtags": [
+      "mobile",
+      "bigdata"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_26",
+    "username": "camila_moreno_26",
+    "contenido": "Diseño de interfaces intuitivas y accesibles #desarrollo #startup",
+    "fecha_publicacion": "2024-03-23T09:40:00Z",
+    "fecha_actualizacion": "2024-03-23T09:40:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 191,
+      "comentarios": 5,
+      "compartidos": 11,
+      "visualizaciones": 949
+    },
+    "hashtags": [
+      "desarrollo",
+      "startup"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_27",
+    "username": "sebastián_jiménez_27",
+    "contenido": "Análisis de datos con herramientas modernas #tecnologia #python #desarrollo #javascript",
+    "fecha_publicacion": "2024-03-25T13:49:00Z",
+    "fecha_actualizacion": "2024-03-25T13:49:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 190,
+      "comentarios": 6,
+      "compartidos": 65,
+      "visualizaciones": 4461
+    },
+    "hashtags": [
+      "tecnologia",
+      "python",
+      "desarrollo",
+      "javascript"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_28",
+    "username": "isabella_ruiz_28",
+    "contenido": "Compartiendo mi experiencia con bases de datos NoSQL #desarrollo #startup #bigdata",
+    "fecha_publicacion": "2024-03-27T15:09:00Z",
+    "fecha_actualizacion": "2024-03-27T15:09:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 421,
+      "comentarios": 39,
+      "compartidos": 17,
+      "visualizaciones": 1004
+    },
+    "hashtags": [
+      "desarrollo",
+      "startup",
+      "bigdata"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_29",
+    "username": "nicolás_hernández_29",
+    "contenido": "Proyecto colaborativo en desarrollo #bigdata #emprendimiento #tecnologia",
+    "fecha_publicacion": "2024-03-29T11:37:00Z",
+    "fecha_actualizacion": "2024-03-29T11:37:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 225,
+      "comentarios": 27,
+      "compartidos": 78,
+      "visualizaciones": 4124
+    },
+    "hashtags": [
+      "bigdata",
+      "emprendimiento",
+      "tecnologia"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_30",
+    "username": "juan_pérez_30",
+    "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #python #diseño",
+    "fecha_publicacion": "2024-03-31T09:10:00Z",
+    "fecha_actualizacion": "2024-03-31T09:10:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 126,
+      "comentarios": 33,
+      "compartidos": 77,
+      "visualizaciones": 1046
+    },
+    "hashtags": [
+      "python",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_31",
+    "username": "maría_garcía_31",
+    "contenido": "Compartiendo algunos tips de diseño UX para aplicaciones móviles 📱 #web #bigdata #desarrollo",
+    "fecha_publicacion": "2024-04-02T17:12:00Z",
+    "fecha_actualizacion": "2024-04-02T17:12:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 217,
+      "comentarios": 18,
+      "compartidos": 42,
+      "visualizaciones": 4059
+    },
+    "hashtags": [
+      "web",
+      "bigdata",
+      "desarrollo"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_32",
+    "username": "carlos_rodríguez_32",
+    "contenido": "Aprendiendo sobre BigData y sus aplicaciones prácticas #mobile #bigdata #web #innovacion",
+    "fecha_publicacion": "2024-04-04T13:30:00Z",
+    "fecha_actualizacion": "2024-04-04T13:30:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 82,
+      "comentarios": 41,
+      "compartidos": 92,
+      "visualizaciones": 1532
+    },
+    "hashtags": [
+      "mobile",
+      "bigdata",
+      "web",
+      "innovacion"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_33",
+    "username": "ana_lópez_33",
+    "contenido": "Nuevo proyecto en desarrollo usando tecnologías modernas #ux #mobile",
+    "fecha_publicacion": "2024-04-06T13:42:00Z",
+    "fecha_actualizacion": "2024-04-06T13:42:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 189,
+      "comentarios": 18,
+      "compartidos": 96,
+      "visualizaciones": 2028
+    },
+    "hashtags": [
+      "ux",
+      "mobile"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_34",
+    "username": "luis_martínez_34",
+    "contenido": "Tips útiles para desarrolladores principiantes #desarrollo #emprendimiento #javascript #bigdata",
+    "fecha_publicacion": "2024-04-08T18:29:00Z",
+    "fecha_actualizacion": "2024-04-08T18:29:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 267,
+      "comentarios": 10,
+      "compartidos": 49,
+      "visualizaciones": 4545
+    },
+    "hashtags": [
+      "desarrollo",
+      "emprendimiento",
+      "javascript",
+      "bigdata"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_35",
+    "username": "laura_gonzález_35",
+    "contenido": "Explorando las capacidades de MongoDB para proyectos escalables #web #desarrollo #javascript",
+    "fecha_publicacion": "2024-04-10T16:32:00Z",
+    "fecha_actualizacion": "2024-04-10T16:32:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 482,
+      "comentarios": 36,
+      "compartidos": 18,
+      "visualizaciones": 1969
+    },
+    "hashtags": [
+      "web",
+      "desarrollo",
+      "javascript"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_36",
+    "username": "pedro_fernández_36",
+    "contenido": "Diseño de interfaces intuitivas y accesibles #startup #javascript #python #educacion",
+    "fecha_publicacion": "2024-04-12T20:35:00Z",
+    "fecha_actualizacion": "2024-04-12T20:35:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 274,
+      "comentarios": 32,
+      "compartidos": 5,
+      "visualizaciones": 2861
+    },
+    "hashtags": [
+      "startup",
+      "javascript",
+      "python",
+      "educacion"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_37",
+    "username": "sofía_sánchez_37",
+    "contenido": "Análisis de datos con herramientas modernas #tecnologia #python",
+    "fecha_publicacion": "2024-04-14T17:01:00Z",
+    "fecha_actualizacion": "2024-04-14T17:01:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 122,
+      "comentarios": 33,
+      "compartidos": 13,
+      "visualizaciones": 4300
+    },
+    "hashtags": [
+      "tecnologia",
+      "python"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_38",
+    "username": "diego_ramírez_38",
+    "contenido": "Compartiendo mi experiencia con bases de datos NoSQL #ux #mongodb #mobile",
+    "fecha_publicacion": "2024-04-16T17:54:00Z",
+    "fecha_actualizacion": "2024-04-16T17:54:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 363,
+      "comentarios": 43,
+      "compartidos": 85,
+      "visualizaciones": 2436
+    },
+    "hashtags": [
+      "ux",
+      "mongodb",
+      "mobile"
+    ],
+    "reacciones": [],
+    "activo": true
+  },
+  {
+    "usuario_id": "USER_ID_39",
+    "username": "valentina_torres_39",
+    "contenido": "Proyecto colaborativo en desarrollo #tecnologia #programacion #desarrollo #diseño",
+    "fecha_publicacion": "2024-04-18T11:01:00Z",
+    "fecha_actualizacion": "2024-04-18T11:01:00Z",
+    "visibilidad": "publico",
+    "estadisticas": {
+      "likes": 359,
+      "comentarios": 18,
+      "compartidos": 74,
+      "visualizaciones": 3155
+    },
+    "hashtags": [
+      "tecnologia",
+      "programacion",
+      "desarrollo",
+      "diseño"
+    ],
+    "reacciones": [],
+    "activo": true
+  }
+]

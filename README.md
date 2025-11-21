@@ -8,21 +8,16 @@ Este repositorio contiene la implementación de una base de datos MongoDB para g
 2. [Requisitos Previos](#requisitos-previos)
 3. [Instalación](#instalación)
 4. [Diseño de la Base de Datos](#diseño-de-la-base-de-datos)
-5. [Ejecución Paso a Paso](#ejecución-paso-a-paso)
-6. [Estructura del Proyecto](#estructura-del-proyecto)
-7. [Consultas Implementadas](#consultas-implementadas)
-8. [Documentación Adicional](#documentación-adicional)
+5. [Implementación en MongoDB](#implementación-en-mongodb)
+6. [Consultas Implementadas](#consultas-implementadas)
+7. [Documentación](#documentación)
+8. [Estructura del Proyecto](#estructura-del-proyecto)
 
 ---
 
 ## 📝 Descripción del Proyecto
 
-Este proyecto implementa una base de datos NoSQL utilizando MongoDB para almacenar y gestionar datos de una red social. El caso de uso seleccionado es ideal para MongoDB debido a:
-
-- **Naturaleza semiestructurada de los datos**: Los datos de redes sociales pueden variar en estructura
-- **Escalabilidad horizontal**: Necesidad de manejar grandes volúmenes de datos
-- **Flexibilidad de esquema**: Permite agregar nuevos campos sin migraciones costosas
-- **Consultas rápidas**: Optimizado para lectura de feeds y búsquedas
+Para esta fase se ha seleccionado el caso de uso de almacenamiento de datos de redes sociales, específicamente para gestionar posts, comentarios y usuarios. Este caso de uso es ideal para MongoDB debido a la naturaleza semiestructurada de los datos, la necesidad de escalabilidad horizontal y la flexibilidad para agregar nuevos campos sin migraciones costosas.
 
 ### Caso de Uso
 
@@ -44,9 +39,22 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ### Paso 1: Instalar MongoDB
 
+Para la implementación de este proyecto, se descargó e instaló MongoDB Community Server versión 8.2.1 desde el sitio oficial de MongoDB. La instalación se realizó en Windows utilizando el instalador MSI proporcionado. Para este ejercicio, no se configuró autenticación con usuario y contraseña, permitiendo conexiones locales sin credenciales para facilitar el desarrollo y las pruebas.
+
 1. Descarga MongoDB Community Server desde el [sitio oficial de MongoDB](https://www.mongodb.com/try/download/community)
+
+![Descarga de MongoDB](Imagenes/descargando%20mogo.png)
+
+*Figura 1. Descarga de MongoDB Community Server 8.2.1 para Windows desde el sitio oficial de MongoDB*
+
 2. Ejecuta el instalador MSI para Windows
+
+![Instalación de MongoDB](Imagenes/instalador%20terminando%20la%20intalcion.png)
+
+*Figura 2. Proceso de instalación de MongoDB 8.2.1 en Windows, mostrando la copia de archivos durante la instalación*
+
 3. Durante la instalación, **no configures autenticación** (para este ejercicio se permite conexión local sin credenciales)
+
 4. Verifica la instalación ejecutando en la terminal:
 
 ```bash
@@ -75,6 +83,14 @@ Asegúrate de que MongoDB esté ejecutándose. Por defecto, MongoDB se ejecuta e
 
 ## 🗄️ Diseño de la Base de Datos
 
+A continuación se presenta el diseño del esquema de la base de datos MongoDB para el caso de uso seleccionado:
+
+![Esquema de la Base de Datos](Imagenes/red_social_esquema_compass.png)
+
+*Figura 3. Esquema de la base de datos MongoDB para almacenamiento de datos de redes sociales (generado con MongoDB Compass)*
+
+El esquema diseñado contempla tres colecciones principales: usuarios, posts y comentarios. La colección de usuarios almacena la información básica de los usuarios, incluyendo datos de perfil, ubicación y estadísticas de seguidores. La colección de posts contiene las publicaciones de los usuarios con sus respectivas estadísticas, hashtags, reacciones y comentarios embebidos para acceso rápido. La colección de comentarios almacena los comentarios de los posts, permitiendo respuestas anidadas y manteniendo referencias tanto al post como al usuario que comentó.
+
 ### Base de Datos: `red_social`
 
 La base de datos está compuesta por tres colecciones principales:
@@ -91,20 +107,6 @@ La base de datos está compuesta por tres colecciones principales:
 │   usuarios   │    │    posts     │    │  comentarios │
 └──────────────┘    └──────────────┘    └──────────────┘
 ```
-
-### Diagramas del Esquema
-
-#### Figura 1: Esquema de la Base de Datos (MongoDB Compass)
-
-![Esquema de la Base de Datos](red_social.png)
-
-*Figura 1. Esquema de la base de datos MongoDB para almacenamiento de datos de redes sociales (generado con MongoDB Compass)*
-
-#### Figura 2: Diagrama del Esquema de Base de Datos
-
-![Diagrama del Esquema](esquema_base_datos_red_social.png)
-
-*Figura 2. Diagrama del esquema de base de datos para la red social*
 
 ### Colecciones
 
@@ -157,442 +159,226 @@ Para más detalles sobre el esquema, consulta [ESQUEMA_REDES_SOCIALES.md](ESQUEM
 
 ---
 
-## 🚀 Ejecución Paso a Paso
+## 🚀 Implementación en MongoDB
 
-Puedes ejecutar los comandos usando **Python (PyMongo)** o directamente desde la **consola de MongoDB (mongosh)**. Ambas opciones están disponibles en este repositorio.
+Para crear la base de datos y cargar los datos de prueba en MongoDB, se utilizó el método de importación desde archivos JSON. Se generaron archivos JSON con al menos 100 documentos distribuidos en las tres colecciones (usuarios, posts y comentarios) y se importaron utilizando MongoDB Compass o la herramienta mongoimport.
 
-### Opción 1: Usando Python (PyMongo)
+### Paso 1: Generar los archivos JSON de datos
 
-#### Paso 1: Crear la Base de Datos e Insertar Datos
+Primero, ejecutamos nuestro script de Python (`generar_datos_json.py`) para generar los archivos JSON con los datos de prueba. El script crea tres archivos: `datos_usuarios.json`, `datos_posts.json` y `datos_comentarios.json`.
 
-Ejecuta el script `comandos_mongodb.py` para crear la base de datos, las colecciones y los datos de prueba:
-
-```bash
-python comandos_mongodb.py
-```
-
-**¿Qué hace este script?**
-
-1. **Conecta a MongoDB**: Establece conexión con MongoDB en `localhost:27017`
-2. **Crea/selecciona la base de datos**: Crea la base de datos `red_social`
-3. **Inserta usuarios**: Crea 2 usuarios de prueba (Juan Pérez y María García)
-4. **Inserta posts**: Crea 2 posts asociados a los usuarios
-5. **Inserta comentarios**: Crea 2 comentarios con respuestas anidadas
-6. **Crea índices**: Crea índices para optimizar las consultas
-7. **Muestra resumen**: Imprime el total de documentos insertados
-
-**Salida esperada:**
-
-```
-Usuarios insertados: 2
-Posts insertados: 2
-Comentarios insertados: 2
-Índices creados exitosamente
-
-=== RESUMEN DE DATOS INSERTADOS ===
-Usuarios: 2
-Posts: 2
-Comentarios: 2
-Total: 6 documentos
-
-Conexión cerrada
-```
-
-#### Paso 2: Ejecutar Consultas
-
-Ejecuta el script `consultas_mongodb.py` para ver todas las consultas implementadas:
-
-```bash
-python consultas_mongodb.py
-```
-
-Este script ejecuta y muestra los resultados de:
-
-1. **Consultas básicas CRUD** (Inserción, Selección, Actualización, Eliminación)
-2. **Consultas con filtros y operadores** (Comparación, Lógicos, Arrays)
-3. **Consultas de agregación** (Promedios, Sumas, Agrupaciones, Joins)
-
-**Salida esperada:**
-
-El script mostrará en consola todos los resultados de las consultas organizadas por categorías.
-
----
-
-### Opción 2: Usando Consola MongoDB (mongosh)
-
-#### Paso 1: Crear la Base de Datos e Insertar Datos
-
-Abre la consola de MongoDB:
-
-```bash
-mongosh
-```
-
-Luego ejecuta el script de comandos de consola. Tienes dos opciones:
-
-**Opción A: Ejecutar desde archivo**
-```bash
-mongosh < comandos_mongodb_consola.js
-```
-
-**Opción B: Copiar y pegar comandos**
-1. Abre `comandos_mongodb_consola.js` en un editor
-2. Copia todo el contenido
-3. Pégalo en la consola de `mongosh`
-
-**¿Qué hace este script?**
-
-1. **Selecciona la base de datos**: Usa `use red_social`
-2. **Inserta usuarios**: Crea 2 usuarios de prueba
-3. **Inserta posts**: Crea 2 posts asociados a los usuarios
-4. **Inserta comentarios**: Crea 2 comentarios con respuestas anidadas
-5. **Crea índices**: Crea índices para optimizar las consultas
-6. **Muestra resumen**: Imprime el total de documentos insertados
-
-**Salida esperada:**
-
-```
-Usuarios insertados: 2
-Posts insertados: 2
-Comentarios insertados: 2
-Índices creados exitosamente
-
-=== RESUMEN DE DATOS INSERTADOS ===
-Usuarios: 2
-Posts: 2
-Comentarios: 2
-Total: 6 documentos
-
-✅ Base de datos creada exitosamente
-```
-
-#### Paso 2: Ejecutar Consultas
-
-Ejecuta el script de consultas de consola:
-
-```bash
-mongosh red_social < consultas_mongodb_consola.js
-```
-
-O copia y pega los comandos desde `consultas_mongodb_consola.js` directamente en `mongosh`.
-
-Este script ejecuta y muestra los resultados de:
-
-1. **Consultas básicas CRUD** (Inserción, Selección, Actualización, Eliminación)
-2. **Consultas con filtros y operadores** (Comparación, Lógicos, Arrays)
-3. **Consultas de agregación** (Promedios, Sumas, Agrupaciones, Joins)
-
-**Salida esperada:**
-
-El script mostrará en consola todos los resultados de las consultas organizadas por categorías.
-
----
-
-## 💻 Código Fuente
-
-### Opción 1: Python (PyMongo)
-
-#### Script: `comandos_mongodb.py`
-
-Este script crea la base de datos, las colecciones e inserta los datos de prueba:
+#### Código Python: `generar_datos_json.py`
 
 ```python
-# Script Python para crear base de datos MongoDB - Red Social
-# Requiere: pip install pymongo
+# Script para generar datos de prueba en formato JSON para MongoDB
+# Genera al menos 100 documentos distribuidos en usuarios, posts y comentarios
 
-from pymongo import MongoClient
-from datetime import datetime
-from bson import ObjectId
+import json
+from datetime import datetime, timedelta
+import random
 
-# Conectar a MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-
-# Crear/seleccionar base de datos
-db = client['red_social']
-
-# ============================================
-# 1. COLECCIÓN: usuarios
-# ============================================
-
-usuarios = db['usuarios']
-
-# Insertar 2 usuarios de prueba
-usuarios_data = [
-    {
-        "username": "juan_perez",
-        "email": "juan.perez@email.com",
-        "nombre_completo": "Juan Pérez",
-        "fecha_registro": datetime(2024, 1, 10, 10, 30, 0),
-        "seguidores": 1250,
-        "siguiendo": 450,
-        "ubicacion": {
-            "ciudad": "Bogotá",
-            "pais": "Colombia"
-        }
-    },
-    {
-        "username": "maria_garcia",
-        "email": "maria.garcia@email.com",
-        "nombre_completo": "María García",
-        "fecha_registro": datetime(2024, 2, 15, 14, 20, 0),
-        "seguidores": 890,
-        "siguiendo": 320,
-        "ubicacion": {
-            "ciudad": "Medellín",
-            "pais": "Colombia"
-        }
-    }
+ciudades = ['Bogotá', 'Medellín', 'Cali', 'Barranquilla', 'Cartagena', 'Bucaramanga', 'Pereira', 'Santa Marta', 'Manizales', 'Armenia']
+nombres = ['Juan', 'María', 'Carlos', 'Ana', 'Luis', 'Laura', 'Pedro', 'Sofía', 'Diego', 'Valentina', 'Andrés', 'Camila', 'Sebastián', 'Isabella', 'Nicolás']
+apellidos = ['Pérez', 'García', 'Rodríguez', 'López', 'Martínez', 'González', 'Fernández', 'Sánchez', 'Ramírez', 'Torres', 'Díaz', 'Moreno', 'Jiménez', 'Ruiz', 'Hernández']
+hashtags_list = ['programacion', 'mongodb', 'bigdata', 'diseño', 'ux', 'mobile', 'web', 'javascript', 'python', 'desarrollo', 'tecnologia', 'innovacion', 'startup', 'emprendimiento', 'educacion']
+contenidos_posts = [
+    "Acabo de completar mi primera aplicación con MongoDB! 🎉",
+    "Compartiendo algunos tips de diseño UX para aplicaciones móviles 📱",
+    "Aprendiendo sobre BigData y sus aplicaciones prácticas",
+    "Nuevo proyecto en desarrollo usando tecnologías modernas",
+    "Tips útiles para desarrolladores principiantes",
+    "Explorando las capacidades de MongoDB para proyectos escalables",
+    "Diseño de interfaces intuitivas y accesibles",
+    "Análisis de datos con herramientas modernas",
+    "Compartiendo mi experiencia con bases de datos NoSQL",
+    "Proyecto colaborativo en desarrollo"
 ]
 
-resultado_usuarios = usuarios.insert_many(usuarios_data)
-print(f"Usuarios insertados: {len(resultado_usuarios.inserted_ids)}")
+# Generar usuarios (40 usuarios)
+usuarios = []
+base_date = datetime(2024, 1, 1)
+for i in range(40):
+    fecha = base_date + timedelta(days=i*3, hours=random.randint(8, 18), minutes=random.randint(0, 59))
+    usuarios.append({
+        "username": f"{nombres[i%15].lower()}_{apellidos[i%15].lower()}_{i}",
+        "email": f"{nombres[i%15].lower()}.{apellidos[i%15].lower()}{i}@email.com",
+        "nombre_completo": f"{nombres[i%15]} {apellidos[i%15]}",
+        "fecha_registro": fecha.isoformat() + "Z",
+        "seguidores": random.randint(100, 5000),
+        "siguiendo": random.randint(50, 2000),
+        "ubicacion": {
+            "ciudad": ciudades[i%10],
+            "pais": "Colombia"
+        },
+        "activo": True
+    })
 
-# Obtener IDs de usuarios
-juan = usuarios.find_one({"username": "juan_perez"})
-maria = usuarios.find_one({"username": "maria_garcia"})
-
-# ============================================
-# 2. COLECCIÓN: posts
-# ============================================
-
-posts = db['posts']
-
-# Insertar 2 posts de prueba
-posts_data = [
-    {
-        "usuario_id": juan["_id"],
-        "username": "juan_perez",
-        "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #programacion #mongodb #bigdata",
-        "fecha_publicacion": datetime(2024, 12, 15, 14, 30, 0),
-        "fecha_actualizacion": datetime(2024, 12, 15, 14, 30, 0),
+# Generar posts (40 posts)
+posts = []
+for i in range(40):
+    usuario_idx = i % len(usuarios)
+    fecha_post = base_date + timedelta(days=30+i*2, hours=random.randint(8, 20), minutes=random.randint(0, 59))
+    hashtags = random.sample(hashtags_list, random.randint(2, 4))
+    posts.append({
+        "usuario_id": f"USER_ID_{usuario_idx}",
+        "username": usuarios[usuario_idx]["username"],
+        "contenido": f"{contenidos_posts[i%10]} #{' #'.join(hashtags)}",
+        "fecha_publicacion": fecha_post.isoformat() + "Z",
+        "fecha_actualizacion": fecha_post.isoformat() + "Z",
         "visibilidad": "publico",
         "estadisticas": {
-            "likes": 45,
-            "comentarios": 12,
-            "compartidos": 8,
-            "visualizaciones": 320
+            "likes": random.randint(10, 500),
+            "comentarios": random.randint(2, 50),
+            "compartidos": random.randint(1, 100),
+            "visualizaciones": random.randint(100, 5000)
         },
-        "hashtags": ["programacion", "mongodb", "bigdata"],
-        "reacciones": [
-            {
-                "usuario_id": maria["_id"],
-                "tipo": "like",
-                "fecha": datetime(2024, 12, 15, 14, 35, 0)
-            }
-        ],
+        "hashtags": hashtags,
+        "reacciones": [],
         "activo": True
-    },
-    {
-        "usuario_id": maria["_id"],
-        "username": "maria_garcia",
-        "contenido": "Compartiendo algunos tips de diseño UX para aplicaciones móviles 📱 #diseño #ux #mobile",
-        "fecha_publicacion": datetime(2024, 12, 16, 9, 15, 0),
-        "fecha_actualizacion": datetime(2024, 12, 16, 9, 15, 0),
-        "visibilidad": "publico",
+    })
+
+# Generar comentarios (30 comentarios)
+comentarios = []
+for i in range(30):
+    post_idx = i % len(posts)
+    usuario_idx = random.randint(0, len(usuarios)-1)
+    fecha_comentario = base_date + timedelta(days=35+i*2, hours=random.randint(9, 21), minutes=random.randint(0, 59))
+    comentarios.append({
+        "post_id": f"POST_ID_{post_idx}",
+        "usuario_id": f"USER_ID_{usuario_idx}",
+        "username": usuarios[usuario_idx]["username"],
+        "contenido": f"Excelente contenido! Muy útil para mi proyecto {i+1}.",
+        "fecha_comentario": fecha_comentario.isoformat() + "Z",
+        "fecha_actualizacion": fecha_comentario.isoformat() + "Z",
         "estadisticas": {
-            "likes": 78,
-            "comentarios": 15,
-            "compartidos": 12,
-            "visualizaciones": 450
-        },
-        "hashtags": ["diseño", "ux", "mobile"],
-        "reacciones": [
-            {
-                "usuario_id": juan["_id"],
-                "tipo": "like",
-                "fecha": datetime(2024, 12, 16, 9, 20, 0)
-            }
-        ],
-        "activo": True
-    }
-]
-
-resultado_posts = posts.insert_many(posts_data)
-print(f"Posts insertados: {len(resultado_posts.inserted_ids)}")
-
-# Obtener IDs de posts
-post1 = posts.find_one({"username": "juan_perez"})
-post2 = posts.find_one({"username": "maria_garcia"})
-
-# ============================================
-# 3. COLECCIÓN: comentarios
-# ============================================
-
-comentarios = db['comentarios']
-
-# Insertar 2 comentarios de prueba
-comentarios_data = [
-    {
-        "post_id": post1["_id"],
-        "usuario_id": maria["_id"],
-        "username": "maria_garcia",
-        "contenido": "Excelente trabajo! Me gustaría saber más sobre tu implementación.",
-        "fecha_comentario": datetime(2024, 12, 15, 16, 0, 0),
-        "fecha_actualizacion": datetime(2024, 12, 15, 16, 0, 0),
-        "estadisticas": {
-            "likes": 5,
-            "respuestas": 2
-        },
-        "comentario_padre_id": None,
-        "respuestas": [
-            {
-                "_id": ObjectId(),
-                "usuario_id": juan["_id"],
-                "username": "juan_perez",
-                "contenido": "Gracias! Te puedo compartir el código si quieres",
-                "fecha": datetime(2024, 12, 15, 16, 30, 0),
-                "likes": 1
-            }
-        ],
-        "activo": True
-    },
-    {
-        "post_id": post2["_id"],
-        "usuario_id": juan["_id"],
-        "username": "juan_perez",
-        "contenido": "Muy útiles estos tips! Los aplicaré en mi próximo proyecto.",
-        "fecha_comentario": datetime(2024, 12, 16, 10, 0, 0),
-        "fecha_actualizacion": datetime(2024, 12, 16, 10, 0, 0),
-        "estadisticas": {
-            "likes": 8,
-            "respuestas": 0
+            "likes": random.randint(0, 50),
+            "respuestas": random.randint(0, 5)
         },
         "comentario_padre_id": None,
         "respuestas": [],
         "activo": True
-    }
-]
+    })
 
-resultado_comentarios = comentarios.insert_many(comentarios_data)
-print(f"Comentarios insertados: {len(resultado_comentarios.inserted_ids)}")
+# Guardar usuarios
+with open('datos_usuarios.json', 'w', encoding='utf-8') as f:
+    json.dump(usuarios, f, indent=2, ensure_ascii=False)
 
-# ============================================
-# 4. CREAR ÍNDICES
-# ============================================
+# Guardar posts
+with open('datos_posts.json', 'w', encoding='utf-8') as f:
+    json.dump(posts, f, indent=2, ensure_ascii=False)
 
-# Índices para usuarios
-usuarios.create_index("username", unique=True)
-usuarios.create_index("email", unique=True)
-usuarios.create_index("fecha_registro")
+# Guardar comentarios
+with open('datos_comentarios.json', 'w', encoding='utf-8') as f:
+    json.dump(comentarios, f, indent=2, ensure_ascii=False)
 
-# Índices para posts
-posts.create_index("usuario_id")
-posts.create_index([("fecha_publicacion", -1)])  # -1 = descendente
-posts.create_index("hashtags")
-posts.create_index("visibilidad")
-posts.create_index([("estadisticas.likes", -1)])
-posts.create_index([("contenido", "text"), ("hashtags", "text")])
-
-# Índices para comentarios
-comentarios.create_index("post_id")
-comentarios.create_index("usuario_id")
-comentarios.create_index([("fecha_comentario", -1)])
-comentarios.create_index("comentario_padre_id")
-comentarios.create_index([("estadisticas.likes", -1)])
-
-print("Índices creados exitosamente")
-
-# ============================================
-# 5. VERIFICAR DATOS
-# ============================================
-
-print(f"\n=== RESUMEN DE DATOS INSERTADOS ===")
-print(f"Usuarios: {usuarios.count_documents({})}")
-print(f"Posts: {posts.count_documents({})}")
-print(f"Comentarios: {comentarios.count_documents({})}")
-print(f"Total: {usuarios.count_documents({}) + posts.count_documents({}) + comentarios.count_documents({})} documentos")
-
-# Cerrar conexión
-client.close()
-print("\nConexión cerrada")
+print(f"Generados {len(usuarios)} usuarios, {len(posts)} posts y {len(comentarios)} comentarios")
+print(f"Total: {len(usuarios) + len(posts) + len(comentarios)} documentos")
+print(f"Archivos creados: datos_usuarios.json, datos_posts.json, datos_comentarios.json")
 ```
 
-#### Script: `consultas_mongodb.py`
+**Ejecutar el script:**
 
-Este script contiene todas las consultas implementadas. Para ver el código completo, consulta el archivo [consultas_mongodb.py](consultas_mongodb.py) en el repositorio.
+```bash
+python generar_datos_json.py
+```
+
+**Salida esperada:**
+
+```
+Generados 40 usuarios, 40 posts y 30 comentarios
+Total: 110 documentos
+Archivos creados: datos_usuarios.json, datos_posts.json, datos_comentarios.json
+```
+
+![Carpeta con script y archivos JSON](Imagenes/carpeta%20con%20script%20y%20archivos%20json%20generados.png)
+
+*Figura 4. Carpeta con el script generar_datos_json.py y los archivos JSON generados (datos_usuarios.json, datos_posts.json, datos_comentarios.json)*
+
+### Paso 2: Crear la base de datos en MongoDB Compass
+
+Abre MongoDB Compass y conéctate a tu instancia local (mongodb://localhost:27017). Luego crea o selecciona la base de datos 'red_social' desde el panel izquierdo.
+
+![Creando base de datos red_social](Imagenes/creando%20base%20red_social%20compass.png)
+
+*Figura 5. Creación de la base de datos red_social en MongoDB Compass*
+
+**Comando de consola:**
+
+```bash
+red_social> use red_social
+```
+
+### Paso 3: Importar los datos JSON
+
+Tienes dos opciones para importar los datos:
+
+#### Opción 1: Importar datos usando MongoDB Compass
+
+Para importar los datos directamente desde MongoDB Compass, sigue estos pasos:
+
+**Archivos JSON disponibles para importar:**
+
+![Archivos JSON disponibles](Imagenes/carpeta%20con%20script%20y%20archivos%20json%20generados.png)
+
+*Figura 6. Archivos JSON disponibles para importar: datos_usuarios.json, datos_posts.json y datos_comentarios.json*
+
+1. Abre MongoDB Compass y conéctate a tu instancia local (mongodb://localhost:27017).
+2. Crea o selecciona la base de datos 'red_social' desde el panel izquierdo.
+3. Para cada colección (usuarios, posts, comentarios):
+   - Haz clic en 'Add Data' → 'Import File'
+   - Selecciona el archivo JSON correspondiente (datos_usuarios.json, datos_posts.json o datos_comentarios.json)
+   - Asegúrate de que el formato esté en 'JSON' y haz clic en 'Import'
+
+![Importar JSON en MongoDB Compass](Imagenes/importar%20json%20a%20mongo%20compass.png)
+
+*Figura 7. Proceso de importación de archivos JSON en MongoDB Compass usando la opción 'Add Data' → 'Import File'*
+
+![Vista de colecciones importadas](Imagenes/vista%20de%20coleciones%20ya%20importadas%20en%20mongo%20compass.png)
+
+*Figura 8. Vista de las colecciones usuarios, posts y comentarios ya importadas en MongoDB Compass*
+
+#### Opción 2: Importar datos usando mongoimport desde la consola
+
+Alternativamente, puedes importar los datos usando la herramienta mongoimport desde la línea de comandos. Los archivos JSON que debes importar son los siguientes:
+
+![Archivos JSON para mongoimport](Imagenes/carpeta%20con%20script%20y%20archivos%20json%20generados.png)
+
+*Figura 9. Archivos JSON disponibles para importar con mongoimport: datos_usuarios.json, datos_posts.json y datos_comentarios.json*
+
+Ejecuta los siguientes comandos desde la terminal para importar cada archivo JSON a su colección correspondiente:
+
+```bash
+red_social> mongoimport --db red_social --collection usuarios --file "fase2-mongodb/Generar Datos Iniciales/datos_usuarios.json" --jsonArray
+
+red_social> mongoimport --db red_social --collection posts --file "fase2-mongodb/Generar Datos Iniciales/datos_posts.json" --jsonArray
+
+red_social> mongoimport --db red_social --collection comentarios --file "fase2-mongodb/Generar Datos Iniciales/datos_comentarios.json" --jsonArray
+```
+
+### Paso 4: Verificar la inserción de datos
+
+Una vez importados los datos, puedes verificar que se hayan insertado correctamente ejecutando los siguientes comandos:
+
+```bash
+red_social> print("\n=== RESUMEN DE DATOS INSERTADOS ===")
+red_social> print("Usuarios: " + db.usuarios.countDocuments({}))
+red_social> print("Posts: " + db.posts.countDocuments({}))
+red_social> print("Comentarios: " + db.comentarios.countDocuments({}))
+red_social> print("Total: " + (db.usuarios.countDocuments({}) + db.posts.countDocuments({}) + db.comentarios.countDocuments({})) + " documentos")
+```
 
 ---
 
-### Opción 2: Consola MongoDB (mongosh)
+## 🔍 Consultas Implementadas
 
-#### Script: `comandos_mongodb_consola.js`
+A continuación se presentan ejemplos de las operaciones CRUD (Create, Read, Update, Delete) básicas y consultas avanzadas en MongoDB utilizando comandos de consola:
 
-Este script crea la base de datos, las colecciones e inserta los datos de prueba usando comandos de consola MongoDB:
+### 4.2.2 Consultas básicas (inserción, selección, actualización y eliminación)
 
-```javascript
-// Crear/seleccionar base de datos
-use red_social
-
-// Insertar usuarios
-db.usuarios.insertMany([
-    {
-        "username": "juan_perez",
-        "email": "juan.perez@email.com",
-        "nombre_completo": "Juan Pérez",
-        "fecha_registro": ISODate("2024-01-10T10:30:00Z"),
-        "seguidores": 1250,
-        "siguiendo": 450,
-        "ubicacion": {
-            "ciudad": "Bogotá",
-            "pais": "Colombia"
-        },
-        "activo": true
-    },
-    {
-        "username": "maria_garcia",
-        "email": "maria.garcia@email.com",
-        "nombre_completo": "María García",
-        "fecha_registro": ISODate("2024-02-15T14:20:00Z"),
-        "seguidores": 890,
-        "siguiendo": 320,
-        "ubicacion": {
-            "ciudad": "Medellín",
-            "pais": "Colombia"
-        },
-        "activo": true
-    }
-])
-
-// Obtener IDs para referencias
-var juan = db.usuarios.findOne({"username": "juan_perez"})
-var maria = db.usuarios.findOne({"username": "maria_garcia"})
-
-// Insertar posts
-db.posts.insertMany([
-    {
-        "usuario_id": juan._id,
-        "username": "juan_perez",
-        "contenido": "Acabo de completar mi primera aplicación con MongoDB! 🎉 #programacion #mongodb #bigdata",
-        "fecha_publicacion": ISODate("2024-12-15T14:30:00Z"),
-        "estadisticas": {
-            "likes": 45,
-            "comentarios": 12,
-            "compartidos": 8,
-            "visualizaciones": 320
-        },
-        "hashtags": ["programacion", "mongodb", "bigdata"],
-        "activo": true
-    }
-])
-
-// Crear índices
-db.usuarios.createIndex({"username": 1}, {"unique": true})
-db.usuarios.createIndex({"email": 1}, {"unique": true})
-db.posts.createIndex({"usuario_id": 1})
-db.posts.createIndex({"fecha_publicacion": -1})
-```
-
-#### Script: `consultas_mongodb_consola.js`
-
-Este script contiene todas las consultas implementadas en formato de consola MongoDB. Para ver el código completo, consulta el archivo [consultas_mongodb_consola.js](consultas_mongodb_consola.js) en el repositorio.
-
-**Ejemplo de consultas básicas:**
+#### INSERCIÓN:
 
 ```javascript
-use red_social
-
-// INSERCIÓN
-db.usuarios.insertOne({
+red_social> db.usuarios.insertOne({
     "username": "pedro_sanchez",
     "email": "pedro.sanchez@email.com",
     "nombre_completo": "Pedro Sánchez",
@@ -601,26 +387,119 @@ db.usuarios.insertOne({
     "siguiendo": 200,
     "ubicacion": {"ciudad": "Cartagena", "pais": "Colombia"}
 })
+```
 
-// SELECCIÓN
-db.usuarios.find()
-db.usuarios.findOne({"username": "juan_perez"})
+#### SELECCIÓN:
 
-// ACTUALIZACIÓN
-db.usuarios.updateOne(
+```javascript
+red_social> db.usuarios.find()
+
+red_social> db.usuarios.findOne({"username": "juan_perez"})
+
+red_social> db.usuarios.find({}, {"username": 1, "email": 1, "seguidores": 1})
+```
+
+#### ACTUALIZACIÓN:
+
+```javascript
+red_social> db.usuarios.updateOne(
     {"username": "juan_perez"},
     {"$set": {"seguidores": 1300}}
 )
 
-// ELIMINACIÓN
-db.comentarios.deleteOne({"username": "test_user"})
+red_social> db.posts.updateOne(
+    {"username": "juan_perez"},
+    {"$set": {
+        "estadisticas.likes": 50,
+        "fecha_actualizacion": new Date()
+    }}
+)
 
-// CONSULTAS CON FILTROS
-db.usuarios.find({"seguidores": {$gt: 1000}})
-db.posts.find({"estadisticas.likes": {$lt: 50}})
+red_social> db.posts.updateOne(
+    {"username": "maria_garcia"},
+    {"$inc": {"estadisticas.likes": 5}}
+)
+```
 
-// CONSULTAS DE AGREGACIÓN
-db.usuarios.aggregate([
+#### ELIMINACIÓN:
+
+```javascript
+red_social> db.comentarios.updateOne(
+    {"username": "juan_perez", "activo": true},
+    {"$set": {"activo": false}}
+)
+
+red_social> db.comentarios.deleteOne({"username": "test_user"})
+```
+
+### 4.2.3 Consultas con filtros y operadores
+
+MongoDB ofrece una amplia variedad de operadores para realizar consultas más complejas y específicas. A continuación se muestran ejemplos de los principales operadores:
+
+#### OPERADORES DE COMPARACIÓN:
+
+```javascript
+red_social> db.usuarios.find({"seguidores": {$gt: 1000}})
+
+red_social> db.posts.find({"estadisticas.likes": {$lt: 50}})
+
+red_social> db.usuarios.find({"seguidores": {$gte: 800, $lte: 1500}})
+
+red_social> db.posts.find({"username": {$ne: "juan_perez"}})
+```
+
+#### OPERADORES LÓGICOS:
+
+```javascript
+red_social> db.posts.find({
+    $and: [
+        {"estadisticas.likes": {$gt: 40}},
+        {"estadisticas.comentarios": {$gt: 10}}
+    ]
+})
+
+red_social> db.usuarios.find({
+    $or: [
+        {"ubicacion.ciudad": "Bogotá"},
+        {"ubicacion.ciudad": "Medellín"}
+    ]
+})
+
+red_social> db.posts.find({"username": {$not: {$eq: "juan_perez"}}})
+```
+
+#### OPERADORES DE ARRAY:
+
+```javascript
+red_social> db.posts.find({"hashtags": {$in: ["programacion", "diseño"]}})
+
+red_social> db.posts.find({"hashtags": {$all: ["mongodb", "bigdata"]}})
+
+red_social> db.posts.find({"hashtags": "mongodb"})
+
+red_social> db.comentarios.find({"respuestas": {$size: 2}})
+```
+
+#### ORDENAMIENTO Y LÍMITES:
+
+```javascript
+red_social> db.usuarios.find().sort({"seguidores": -1})
+
+red_social> db.posts.find().limit(5)
+
+red_social> db.usuarios.find().sort({"seguidores": -1}).limit(3)
+
+red_social> db.posts.find().skip(10).limit(5)
+```
+
+### 4.2.4 Consultas de agregación para calcular estadísticas
+
+Las consultas de agregación permiten procesar documentos y realizar cálculos estadísticos complejos. MongoDB utiliza pipelines de agregación compuestos por diferentes etapas:
+
+#### PROMEDIO ($avg):
+
+```javascript
+red_social> db.usuarios.aggregate([
     {
         $group: {
             _id: null,
@@ -631,140 +510,92 @@ db.usuarios.aggregate([
 ])
 ```
 
-**Ejemplo de consultas básicas:**
+#### SUMA ($sum):
 
-```python
-from pymongo import MongoClient
-from datetime import datetime
-
-# Conectar a MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-db = client['red_social']
-
-usuarios = db['usuarios']
-posts = db['posts']
-comentarios = db['comentarios']
-
-# ============================================
-# CONSULTAS BASICAS (CRUD)
-# ============================================
-
-# INSERCIÓN
-nuevo_usuario = {
-    "username": "pedro_sanchez",
-    "email": "pedro.sanchez@email.com",
-    "nombre_completo": "Pedro Sánchez",
-    "fecha_registro": datetime.now(),
-    "seguidores": 500,
-    "siguiendo": 200,
-    "ubicacion": {"ciudad": "Cartagena", "pais": "Colombia"}
-}
-resultado = usuarios.insert_one(nuevo_usuario)
-
-# SELECCIÓN
-todos_usuarios = list(usuarios.find())
-usuario = usuarios.find_one({"username": "juan_perez"})
-
-# ACTUALIZACIÓN
-usuarios.update_one(
-    {"username": "juan_perez"},
-    {"$set": {"seguidores": 1300}}
-)
-
-# ELIMINACIÓN (soft delete)
-comentarios.update_one(
-    {"username": "juan_perez", "activo": True},
-    {"$set": {"activo": False}}
-)
-
-# ============================================
-# CONSULTAS CON FILTROS Y OPERADORES
-# ============================================
-
-# Operadores de comparación
-usuarios.find({"seguidores": {"$gt": 1000}})
-posts.find({"estadisticas.likes": {"$lt": 50}})
-
-# Operadores lógicos
-posts.find({
-    "$and": [
-        {"estadisticas.likes": {"$gt": 40}},
-        {"estadisticas.comentarios": {"$gt": 10}}
-    ]
-})
-
-# Operadores de array
-posts.find({"hashtags": "mongodb"})
-posts.find({"hashtags": {"$in": ["programacion", "diseño"]}})
-
-# ============================================
-# CONSULTAS DE AGREGACIÓN
-# ============================================
-
-# Promedio de seguidores
-pipeline = [
+```javascript
+red_social> db.posts.aggregate([
     {
-        "$group": {
-            "_id": None,
-            "promedio_seguidores": {"$avg": "$seguidores"},
-            "total_usuarios": {"$sum": 1}
+        $group: {
+            _id: null,
+            total_likes: {$sum: "$estadisticas.likes"},
+            total_comentarios: {$sum: "$estadisticas.comentarios"},
+            total_compartidos: {$sum: "$estadisticas.compartidos"}
         }
     }
-]
-resultado = list(usuarios.aggregate(pipeline))
-
-# Agrupar posts por usuario
-pipeline = [
-    {
-        "$group": {
-            "_id": "$username",
-            "total_posts": {"$sum": 1},
-            "total_likes": {"$sum": "$estadisticas.likes"},
-            "promedio_likes": {"$avg": "$estadisticas.likes"}
-        }
-    },
-    {"$sort": {"total_likes": -1}}
-]
-resultado = list(posts.aggregate(pipeline))
-
-# Contar hashtags
-pipeline = [
-    {"$unwind": "$hashtags"},
-    {
-        "$group": {
-            "_id": "$hashtags",
-            "total_apariciones": {"$sum": 1}
-        }
-    },
-    {"$sort": {"total_apariciones": -1}}
-]
-resultado = list(posts.aggregate(pipeline))
-
-# Join entre colecciones
-pipeline = [
-    {
-        "$lookup": {
-            "from": "usuarios",
-            "localField": "usuario_id",
-            "foreignField": "_id",
-            "as": "usuario_info"
-        }
-    },
-    {"$unwind": "$usuario_info"},
-    {
-        "$project": {
-            "username": 1,
-            "contenido": 1,
-            "likes": "$estadisticas.likes",
-            "ciudad_usuario": "$usuario_info.ubicacion.ciudad",
-            "seguidores_usuario": "$usuario_info.seguidores"
-        }
-    }
-]
-resultado = list(posts.aggregate(pipeline))
-
-client.close()
+])
 ```
+
+#### AGRUPACIÓN ($group):
+
+```javascript
+red_social> db.posts.aggregate([
+    {
+        $group: {
+            _id: "$username",
+            total_posts: {$sum: 1},
+            total_likes: {$sum: "$estadisticas.likes"},
+            total_comentarios: {$sum: "$estadisticas.comentarios"},
+            promedio_likes: {$avg: "$estadisticas.likes"}
+        }
+    },
+    {$sort: {"total_likes": -1}}
+])
+```
+
+#### FILTROS EN PIPELINE ($match):
+
+```javascript
+red_social> db.posts.aggregate([
+    {
+        $match: {
+            "estadisticas.likes": {$gt: 40}
+        }
+    },
+    {
+        $group: {
+            _id: null,
+            promedio_likes_filtrado: {$avg: "$estadisticas.likes"},
+            total_posts_filtrados: {$sum: 1}
+        }
+    }
+])
+```
+
+---
+
+## 📚 Documentación
+
+### 4.3.1 Documentación del diseño de la base de datos
+
+La base de datos MongoDB diseñada para este proyecto se denomina 'red_social' y está orientada al almacenamiento de datos de redes sociales, específicamente para gestionar posts, comentarios y usuarios. Esta selección se justifica por la naturaleza semiestructurada de los datos, la necesidad de escalabilidad horizontal y la flexibilidad para agregar nuevos campos sin migraciones costosas.
+
+La base de datos está compuesta por tres colecciones principales: usuarios, posts y comentarios. La colección de usuarios almacena información básica de los usuarios, incluyendo datos de perfil (username, email, nombre_completo), estadísticas de seguidores y siguiendo, ubicación geográfica (ciudad, país) y preferencias. Los campos principales incluyen identificadores únicos como username y email, ambos indexados para garantizar unicidad y optimizar búsquedas.
+
+La colección de posts contiene las publicaciones de los usuarios con sus respectivas estadísticas (likes, comentarios, compartidos, visualizaciones), hashtags, reacciones y comentarios embebidos para acceso rápido. Esta estructura permite almacenar información relacionada directamente en el documento, reduciendo la necesidad de múltiples consultas. Los posts incluyen referencias al usuario mediante usuario_id y también almacenan el username de forma denormalizada para optimizar consultas frecuentes.
+
+La colección de comentarios almacena los comentarios de los posts, permitiendo respuestas anidadas y manteniendo referencias tanto al post como al usuario que comentó. Esta estructura soporta threads de comentarios mediante el campo comentario_padre_id y respuestas embebidas para threads cortos, optimizando el acceso a conversaciones recientes.
+
+Se implementó una estrategia de denormalización selectiva, almacenando username en posts y comentarios para evitar joins frecuentes, y se utilizó un enfoque híbrido de embebido y referencias: comentarios recientes y reacciones se almacenan embebidos en posts para acceso rápido, mientras que comentarios antiguos se mantienen en una colección separada para escalabilidad. Los índices creados optimizan consultas frecuentes: índices únicos en username y email de usuarios, índices en usuario_id y fecha_publicacion de posts, índices de texto para búsquedas en contenido y hashtags, e índices en post_id y usuario_id de comentarios para acelerar las consultas de relaciones.
+
+### 4.3.2 Explicación del código de las consultas
+
+Las consultas implementadas se organizan en tres categorías principales: consultas básicas CRUD, consultas con filtros y operadores, y consultas de agregación. Todas las consultas fueron implementadas utilizando Python con el driver PyMongo, conectándose a MongoDB mediante MongoClient('mongodb://localhost:27017/').
+
+Las consultas básicas CRUD incluyen operaciones de inserción (insert_one, insert_many), selección (find, find_one), actualización (update_one con operadores $set e $inc) y eliminación (delete_one, o soft delete mediante update_one estableciendo activo: False). Por ejemplo, la inserción de un nuevo usuario utiliza insert_one() con un diccionario Python que se convierte automáticamente a BSON, mientras que las actualizaciones utilizan el operador $set para modificar campos específicos o $inc para incrementar valores numéricos.
+
+Las consultas con filtros utilizan operadores de comparación ($gt, $lt, $gte, $lte, $ne), operadores lógicos ($and, $or, $not) y operadores de array ($in, $all). Un ejemplo es la consulta de usuarios con más de 1000 seguidores: usuarios.find({"seguidores": {"$gt": 1000}}), donde $gt filtra documentos donde el campo seguidores es mayor que 1000. Los operadores de array permiten buscar documentos que contengan elementos específicos en arrays, como posts.find({"hashtags": "mongodb"}) para encontrar posts con ese hashtag, o posts.find({"hashtags": {"$in": ["programacion", "diseno"]}}) para encontrar posts con cualquiera de esos hashtags.
+
+Las consultas de agregación utilizan pipelines compuestos por múltiples etapas. La etapa $match filtra documentos antes del procesamiento, similar a WHERE en SQL. La etapa $group agrupa documentos y calcula agregaciones usando operadores como $sum (suma), $avg (promedio), $max (máximo), $min (mínimo) y $count (contar). Por ejemplo, para calcular el promedio de seguidores se utiliza un pipeline con $group que agrupa todos los documentos (_id: None) y calcula {"$avg": "$seguidores"}. La etapa $unwind descompone arrays, permitiendo contar hashtags individuales. La etapa $lookup realiza joins entre colecciones, similar a JOIN en SQL, permitiendo combinar datos de posts con información de usuarios. La etapa $project selecciona y transforma campos, y puede incluir cálculos como el ratio de engagement calculado como (likes + comentarios) / visualizaciones.
+
+### 4.3.3 Análisis de resultados de las consultas de agregación
+
+Las consultas de agregación implementadas proporcionan insights valiosos sobre los datos de la red social. La consulta de promedio de seguidores revela la distribución de popularidad entre usuarios, permitiendo identificar si hay una concentración de seguidores en pocos usuarios o una distribución más equitativa. El promedio de likes por post indica el nivel de engagement general de la plataforma, mientras que el total de likes, comentarios y compartidos muestra la actividad agregada de la comunidad.
+
+La agregación que agrupa posts por usuario y calcula estadísticas (total_posts, total_likes, total_comentarios, promedio_likes) permite identificar a los usuarios más activos y con mayor engagement. Los resultados ordenados por total_likes descendente muestran una jerarquía de influencia, donde usuarios con mayor cantidad de likes totales tienen mayor impacto en la plataforma. Esta información es crucial para identificar creadores de contenido destacados y entender los patrones de interacción.
+
+La consulta de promedio de likes filtrada para posts con más de 40 likes permite analizar el rendimiento de contenido de alta calidad, comparándolo con el promedio general. Si el promedio filtrado es significativamente mayor, indica que existe una brecha entre contenido popular y contenido promedio, sugiriendo que algunos posts generan mucho más engagement que otros. La agregación que cuenta hashtags mediante $unwind revela los temas más populares en la plataforma, información valiosa para estrategias de contenido y tendencias de la comunidad.
+
+En conjunto, estas consultas de agregación demuestran la capacidad de MongoDB para realizar análisis complejos sobre datos no relacionales, proporcionando insights que serían difíciles de obtener con consultas simples. Los pipelines de agregación permiten transformar y analizar datos en una sola operación, optimizando el rendimiento al procesar los datos directamente en la base de datos en lugar de transferirlos a la aplicación para procesamiento posterior. Los resultados obtenidos pueden utilizarse para tomar decisiones informadas sobre estrategias de contenido, identificar tendencias y optimizar la experiencia del usuario en la plataforma.
 
 ---
 
@@ -777,418 +608,33 @@ fase2-mongodb/
 ├── ESQUEMA_REDES_SOCIALES.md           # Documentación detallada del esquema
 │
 ├── [Python - PyMongo]
-├── comandos_mongodb.py                 # Script Python para crear BD e insertar datos
+├── comandos_mongodb.py                 # Script Python para crear BD e insertar datos (6 docs)
 ├── consultas_mongodb.py                # Script Python con todas las consultas
+├── generar_datos_json.py               # Script para generar archivos JSON (110 docs)
+├── importar_datos_json.py              # Script Python para importar desde JSON (110 docs)
 ├── requirements.txt                    # Dependencias Python
 │
 ├── [Consola MongoDB - mongosh]
-├── comandos_mongodb_consola.js         # Script de consola para crear BD e insertar datos
+├── comandos_mongodb_consola.js         # Script de consola para crear BD e insertar datos (6 docs)
 ├── consultas_mongodb_consola.js        # Script de consola con todas las consultas
+├── importar_datos_json.js              # Script de consola para importar desde JSON (110 docs)
 │
-└── [Recursos]
-    ├── red_social.png                   # Esquema de BD (MongoDB Compass)
-    └── esquema_base_datos_red_social.png # Diagrama del esquema
+├── [Generar Datos Iniciales]
+├── generar_datos_json.py               # Script para generar archivos JSON (110 docs)
+├── datos_usuarios.json                 # 40 usuarios en formato JSON
+├── datos_posts.json                     # 40 posts en formato JSON
+├── datos_comentarios.json              # 30 comentarios en formato JSON
+│
+├── [Imagenes]
+├── descargando mogo.png                # Imagen de descarga de MongoDB
+├── instalador terminando la intalcion.png # Imagen de instalación
+├── carpeta con script y archivos json generados.png # Carpeta con archivos
+├── creando base red_social compass.png # Creación de base de datos
+├── importar json a mongo compass.png   # Importación en Compass
+├── vista de coleciones ya importadas en mongo compass.png # Vista de colecciones
+├── red_social_esquema_compass.png      # Esquema de BD (MongoDB Compass)
+└── esquema_base_datos_red_social.png   # Diagrama del esquema
 ```
-
----
-
-## 🔍 Consultas Implementadas
-
-Todas las consultas están disponibles tanto en **Python (PyMongo)** como en **Consola MongoDB (mongosh)**.
-
-### 4.2.2 Consultas Básicas (CRUD)
-
-#### Inserción
-
-**Python:**
-```python
-nuevo_usuario = {
-    "username": "pedro_sanchez",
-    "email": "pedro.sanchez@email.com",
-    "nombre_completo": "Pedro Sánchez",
-    "fecha_registro": datetime.now(),
-    "seguidores": 500,
-    "siguiendo": 200,
-    "ubicacion": {"ciudad": "Cartagena", "pais": "Colombia"}
-}
-resultado = usuarios.insert_one(nuevo_usuario)
-```
-
-**Consola MongoDB:**
-```javascript
-db.usuarios.insertOne({
-    "username": "pedro_sanchez",
-    "email": "pedro.sanchez@email.com",
-    "nombre_completo": "Pedro Sánchez",
-    "fecha_registro": new Date(),
-    "seguidores": 500,
-    "siguiendo": 200,
-    "ubicacion": {"ciudad": "Cartagena", "pais": "Colombia"}
-})
-```
-
-#### Selección
-
-**Python:**
-```python
-# Todos los usuarios
-todos_usuarios = list(usuarios.find())
-
-# Usuario específico
-usuario = usuarios.find_one({"username": "juan_perez"})
-
-# Con proyección (solo campos específicos)
-usuarios = list(usuarios.find({}, {"username": 1, "email": 1, "seguidores": 1}))
-```
-
-**Consola MongoDB:**
-```javascript
-// Todos los usuarios
-db.usuarios.find()
-
-// Usuario específico
-db.usuarios.findOne({"username": "juan_perez"})
-
-// Con proyección (solo campos específicos)
-db.usuarios.find({}, {"username": 1, "email": 1, "seguidores": 1})
-```
-
-#### Actualización
-
-**Python:**
-```python
-# Actualizar un campo
-usuarios.update_one(
-    {"username": "juan_perez"},
-    {"$set": {"seguidores": 1300}}
-)
-
-# Incrementar un valor
-posts.update_one(
-    {"username": "maria_garcia"},
-    {"$inc": {"estadisticas.likes": 5}}
-)
-```
-
-**Consola MongoDB:**
-```javascript
-// Actualizar un campo
-db.usuarios.updateOne(
-    {"username": "juan_perez"},
-    {"$set": {"seguidores": 1300}}
-)
-
-// Incrementar un valor
-db.posts.updateOne(
-    {"username": "maria_garcia"},
-    {"$inc": {"estadisticas.likes": 5}}
-)
-```
-
-#### Eliminación
-
-**Python:**
-```python
-# Soft delete (marcar como inactivo)
-comentarios.update_one(
-    {"username": "juan_perez", "activo": True},
-    {"$set": {"activo": False}}
-)
-```
-
-**Consola MongoDB:**
-```javascript
-// Soft delete (marcar como inactivo)
-db.comentarios.updateOne(
-    {"username": "juan_perez", "activo": true},
-    {"$set": {"activo": false}}
-)
-```
-
-### 4.2.3 Consultas con Filtros y Operadores
-
-#### Operadores de Comparación
-
-**Python:**
-```python
-# Mayor que
-usuarios.find({"seguidores": {"$gt": 1000}})
-
-# Menor que
-posts.find({"estadisticas.likes": {"$lt": 50}})
-
-# Rango
-usuarios.find({"seguidores": {"$gte": 800, "$lte": 1500}})
-
-# Diferente
-posts.find({"username": {"$ne": "juan_perez"}})
-```
-
-**Consola MongoDB:**
-```javascript
-// Mayor que
-db.usuarios.find({"seguidores": {$gt: 1000}})
-
-// Menor que
-db.posts.find({"estadisticas.likes": {$lt: 50}})
-
-// Rango
-db.usuarios.find({"seguidores": {$gte: 800, $lte: 1500}})
-
-// Diferente
-db.posts.find({"username": {$ne: "juan_perez"}})
-```
-
-#### Operadores Lógicos
-
-**Python:**
-```python
-# AND
-posts.find({
-    "$and": [
-        {"estadisticas.likes": {"$gt": 40}},
-        {"estadisticas.comentarios": {"$gt": 10}}
-    ]
-})
-
-# OR
-usuarios.find({
-    "$or": [
-        {"ubicacion.ciudad": "Bogotá"},
-        {"ubicacion.ciudad": "Medellín"}
-    ]
-})
-```
-
-**Consola MongoDB:**
-```javascript
-// AND
-db.posts.find({
-    $and: [
-        {"estadisticas.likes": {$gt: 40}},
-        {"estadisticas.comentarios": {$gt: 10}}
-    ]
-})
-
-// OR
-db.usuarios.find({
-    $or: [
-        {"ubicacion.ciudad": "Bogotá"},
-        {"ubicacion.ciudad": "Medellín"}
-    ]
-})
-```
-
-#### Operadores de Array
-
-**Python:**
-```python
-# Buscar en array
-posts.find({"hashtags": "mongodb"})
-
-# Contiene cualquiera de los valores
-posts.find({"hashtags": {"$in": ["programacion", "diseño"]}})
-
-# Debe contener todos los valores
-posts.find({"hashtags": {"$all": ["mongodb", "bigdata"]}})
-```
-
-**Consola MongoDB:**
-```javascript
-// Buscar en array
-db.posts.find({"hashtags": "mongodb"})
-
-// Contiene cualquiera de los valores
-db.posts.find({"hashtags": {$in: ["programacion", "diseño"]}})
-
-// Debe contener todos los valores
-db.posts.find({"hashtags": {$all: ["mongodb", "bigdata"]}})
-```
-
-### 4.2.4 Consultas de Agregación
-
-#### Promedio
-
-**Python:**
-```python
-pipeline = [
-    {
-        "$group": {
-            "_id": None,
-            "promedio_seguidores": {"$avg": "$seguidores"},
-            "total_usuarios": {"$sum": 1}
-        }
-    }
-]
-resultado = list(usuarios.aggregate(pipeline))
-```
-
-**Consola MongoDB:**
-```javascript
-db.usuarios.aggregate([
-    {
-        $group: {
-            _id: null,
-            promedio_seguidores: {$avg: "$seguidores"},
-            total_usuarios: {$sum: 1}
-        }
-    }
-])
-```
-
-#### Suma
-
-**Python:**
-```python
-pipeline = [
-    {
-        "$group": {
-            "_id": None,
-            "total_likes": {"$sum": "$estadisticas.likes"},
-            "total_comentarios": {"$sum": "$estadisticas.comentarios"}
-        }
-    }
-]
-resultado = list(posts.aggregate(pipeline))
-```
-
-**Consola MongoDB:**
-```javascript
-db.posts.aggregate([
-    {
-        $group: {
-            _id: null,
-            total_likes: {$sum: "$estadisticas.likes"},
-            total_comentarios: {$sum: "$estadisticas.comentarios"}
-        }
-    }
-])
-```
-
-#### Agrupación
-
-**Python:**
-```python
-pipeline = [
-    {
-        "$group": {
-            "_id": "$username",
-            "total_posts": {"$sum": 1},
-            "total_likes": {"$sum": "$estadisticas.likes"},
-            "promedio_likes": {"$avg": "$estadisticas.likes"}
-        }
-    },
-    {"$sort": {"total_likes": -1}}
-]
-resultado = list(posts.aggregate(pipeline))
-```
-
-**Consola MongoDB:**
-```javascript
-db.posts.aggregate([
-    {
-        $group: {
-            _id: "$username",
-            total_posts: {$sum: 1},
-            total_likes: {$sum: "$estadisticas.likes"},
-            promedio_likes: {$avg: "$estadisticas.likes"}
-        }
-    },
-    {$sort: {"total_likes": -1}}
-])
-```
-
-#### Unwind (Descomponer Arrays)
-
-**Python:**
-```python
-pipeline = [
-    {"$unwind": "$hashtags"},
-    {
-        "$group": {
-            "_id": "$hashtags",
-            "total_apariciones": {"$sum": 1}
-        }
-    },
-    {"$sort": {"total_apariciones": -1}}
-]
-resultado = list(posts.aggregate(pipeline))
-```
-
-**Consola MongoDB:**
-```javascript
-db.posts.aggregate([
-    {$unwind: "$hashtags"},
-    {
-        $group: {
-            _id: "$hashtags",
-            total_apariciones: {$sum: 1}
-        }
-    },
-    {$sort: {"total_apariciones": -1}}
-])
-```
-
-#### Lookup (Join entre colecciones)
-
-**Python:**
-```python
-pipeline = [
-    {
-        "$lookup": {
-            "from": "usuarios",
-            "localField": "usuario_id",
-            "foreignField": "_id",
-            "as": "usuario_info"
-        }
-    },
-    {"$unwind": "$usuario_info"},
-    {
-        "$project": {
-            "username": 1,
-            "contenido": 1,
-            "likes": "$estadisticas.likes",
-            "ciudad_usuario": "$usuario_info.ubicacion.ciudad",
-            "seguidores_usuario": "$usuario_info.seguidores"
-        }
-    }
-]
-resultado = list(posts.aggregate(pipeline))
-```
-
-**Consola MongoDB:**
-```javascript
-db.posts.aggregate([
-    {
-        $lookup: {
-            from: "usuarios",
-            localField: "usuario_id",
-            foreignField: "_id",
-            as: "usuario_info"
-        }
-    },
-    {$unwind: "$usuario_info"},
-    {
-        $project: {
-            username: 1,
-            contenido: 1,
-            likes: "$estadisticas.likes",
-            ciudad_usuario: "$usuario_info.ubicacion.ciudad",
-            seguidores_usuario: "$usuario_info.seguidores"
-        }
-    }
-])
-```
-
----
-
-## 📚 Documentación Adicional
-
-Para más información sobre:
-
-- **Esquema detallado**: Consulta [ESQUEMA_REDES_SOCIALES.md](ESQUEMA_REDES_SOCIALES.md)
-- **Código de consultas**: Revisa el archivo `consultas_mongodb.py` con comentarios explicativos
-- **Script de creación**: Revisa el archivo `comandos_mongodb.py` para entender la estructura de datos
 
 ---
 
@@ -1232,9 +678,8 @@ Este proyecto es parte de una tarea académica y se proporciona únicamente con 
 
 - **Dos opciones disponibles**: Puedes usar Python (PyMongo) o Consola MongoDB (mongosh)
 - Los scripts están comentados para facilitar la comprensión
-- **Python**: Se recomienda ejecutar primero `comandos_mongodb.py` y luego `consultas_mongodb.py`
+- **Python**: Se recomienda ejecutar primero `generar_datos_json.py` y luego importar los datos
 - **Consola**: Se recomienda ejecutar primero `comandos_mongodb_consola.js` y luego `consultas_mongodb_consola.js`
 - Para empezar desde cero, descomenta las líneas de limpieza en los scripts correspondientes
-- Los datos de prueba pueden expandirse para cumplir con el requisito de 100+ documentos
+- Los datos de prueba generan 110 documentos (40 usuarios, 40 posts, 30 comentarios)
 - Ambos métodos (Python y consola) producen los mismos resultados
-
