@@ -606,34 +606,25 @@ fase2-mongodb/
 │
 ├── README.md                           # Este archivo
 ├── ESQUEMA_REDES_SOCIALES.md           # Documentación detallada del esquema
-│
-├── [Python - PyMongo]
-├── comandos_mongodb.py                 # Script Python para crear BD e insertar datos (6 docs)
-├── consultas_mongodb.py                # Script Python con todas las consultas
-├── generar_datos_json.py               # Script para generar archivos JSON (110 docs)
-├── importar_datos_json.py              # Script Python para importar desde JSON (110 docs)
 ├── requirements.txt                    # Dependencias Python
 │
-├── [Consola MongoDB - mongosh]
-├── comandos_mongodb_consola.js         # Script de consola para crear BD e insertar datos (6 docs)
-├── consultas_mongodb_consola.js        # Script de consola con todas las consultas
-├── importar_datos_json.js              # Script de consola para importar desde JSON (110 docs)
+├── Crud/
+│   └── consultas_mongodb_consola.js    # Script de consola con todas las consultas MongoDB
 │
-├── [Generar Datos Iniciales]
-├── generar_datos_json.py               # Script para generar archivos JSON (110 docs)
-├── datos_usuarios.json                 # 40 usuarios en formato JSON
-├── datos_posts.json                     # 40 posts en formato JSON
-├── datos_comentarios.json              # 30 comentarios en formato JSON
+├── Generar Datos Iniciales/
+│   ├── generar_datos_json.py           # Script para generar archivos JSON (110 docs)
+│   ├── datos_usuarios.json             # 40 usuarios en formato JSON
+│   ├── datos_posts.json                # 40 posts en formato JSON
+│   └── datos_comentarios.json          # 30 comentarios en formato JSON
 │
-├── [Imagenes]
-├── descargando mogo.png                # Imagen de descarga de MongoDB
-├── instalador terminando la intalcion.png # Imagen de instalación
-├── carpeta con script y archivos json generados.png # Carpeta con archivos
-├── creando base red_social compass.png # Creación de base de datos
-├── importar json a mongo compass.png   # Importación en Compass
-├── vista de coleciones ya importadas en mongo compass.png # Vista de colecciones
-├── red_social_esquema_compass.png      # Esquema de BD (MongoDB Compass)
-└── esquema_base_datos_red_social.png   # Diagrama del esquema
+└── Imagenes/
+    ├── descargando mogo.png            # Imagen de descarga de MongoDB
+    ├── instalador terminando la intalcion.png # Imagen de instalación
+    ├── carpeta con script y archivos json generados.png # Carpeta con archivos
+    ├── creando base red_social compass.png # Creación de base de datos
+    ├── importar json a mongo compass.png # Importación en Compass
+    ├── vista de coleciones ya importadas en mongo compass.png # Vista de colecciones
+    └── red_social_esquema_compass.png  # Esquema de BD (MongoDB Compass)
 ```
 
 ---
@@ -676,10 +667,9 @@ Este proyecto es parte de una tarea académica y se proporciona únicamente con 
 
 ## 📝 Notas Finales
 
-- **Dos opciones disponibles**: Puedes usar Python (PyMongo) o Consola MongoDB (mongosh)
+- **Generación de datos**: Ejecuta `Generar Datos Iniciales/generar_datos_json.py` para generar los archivos JSON con datos de prueba
+- **Importación de datos**: Puedes importar los datos usando MongoDB Compass (GUI) o mongoimport (línea de comandos)
+- **Consultas**: Las consultas están disponibles en `Crud/consultas_mongodb_consola.js` para ejecutar desde la consola de MongoDB
 - Los scripts están comentados para facilitar la comprensión
-- **Python**: Se recomienda ejecutar primero `generar_datos_json.py` y luego importar los datos
-- **Consola**: Se recomienda ejecutar primero `comandos_mongodb_consola.js` y luego `consultas_mongodb_consola.js`
-- Para empezar desde cero, descomenta las líneas de limpieza en los scripts correspondientes
 - Los datos de prueba generan 110 documentos (40 usuarios, 40 posts, 30 comentarios)
-- Ambos métodos (Python y consola) producen los mismos resultados
+- Todas las imágenes del ejercicio están disponibles en la carpeta `Imagenes/`
